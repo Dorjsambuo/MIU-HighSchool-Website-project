@@ -27,7 +27,8 @@ const DEFAULT_NEWS = {
     {
       title: "Sports Tournament Success",
       date: "August 20, 2025",
-      excerpt: "Our school basketball team won the regional championship tournament.",
+      excerpt:
+        "Our school basketball team won the regional championship tournament.",
       moreText:
         "The school's basketball team demonstrated exceptional skill and determination throughout the regional tournament.",
       imageUrl: "",
@@ -171,7 +172,14 @@ export default function News() {
       <h2 style={{ marginTop: 0 }}>School News (CMS)</h2>
 
       {error && (
-        <div style={{ background: "#ffe5e5", border: "1px solid #ffb3b3", padding: 12, borderRadius: 8 }}>
+        <div
+          style={{
+            background: "#ffe5e5",
+            border: "1px solid #ffb3b3",
+            padding: 12,
+            borderRadius: 8,
+          }}
+        >
           {error}
         </div>
       )}
@@ -181,7 +189,9 @@ export default function News() {
           Section Title
           <input
             value={data.sectionTitle || ""}
-            onChange={(e) => update((d) => ((d.sectionTitle = e.target.value), d))}
+            onChange={(e) =>
+              update((d) => ((d.sectionTitle = e.target.value), d))
+            }
             style={input()}
           />
         </label>
@@ -189,39 +199,73 @@ export default function News() {
           Section Subtitle
           <input
             value={data.sectionSubtitle || ""}
-            onChange={(e) => update((d) => ((d.sectionSubtitle = e.target.value), d))}
+            onChange={(e) =>
+              update((d) => ((d.sectionSubtitle = e.target.value), d))
+            }
             style={input()}
           />
         </label>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <h3 style={{ margin: 0 }}>News Items</h3>
-        <button type="button" onClick={addItem} style={btn()}>
+        <button
+          type="button"
+          onClick={addItem}
+          className="btn-outline-red"
+          style={btn()}
+        >
           + Add News
         </button>
       </div>
 
       {data.items.map((n, idx) => (
         <div key={idx} style={box()}>
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+            }}
+          >
             <strong>Item #{idx + 1}</strong>
-            <button type="button" onClick={() => removeItem(idx)} style={btnDanger()}>
+            <button
+              type="button"
+              onClick={() => removeItem(idx)}
+              style={btnDanger()}
+            >
               Delete
             </button>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 10, marginTop: 10 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 260px",
+              gap: 10,
+              marginTop: 10,
+            }}
+          >
             <input
               placeholder="Title"
               value={n.title || ""}
-              onChange={(e) => update((d) => ((d.items[idx].title = e.target.value), d))}
+              onChange={(e) =>
+                update((d) => ((d.items[idx].title = e.target.value), d))
+              }
               style={input()}
             />
             <input
               placeholder="Date (e.g. October 15, 2025)"
               value={n.date || ""}
-              onChange={(e) => update((d) => ((d.items[idx].date = e.target.value), d))}
+              onChange={(e) =>
+                update((d) => ((d.items[idx].date = e.target.value), d))
+              }
               style={input()}
             />
           </div>
@@ -236,7 +280,9 @@ export default function News() {
               disabled={uploadingIndex === idx}
             />
             {uploadingIndex === idx && (
-              <div style={{ marginTop: 6, fontSize: 12, color: "#666" }}>Uploading…</div>
+              <div style={{ marginTop: 6, fontSize: 12, color: "#666" }}>
+                Uploading…
+              </div>
             )}
           </div>
 
@@ -246,7 +292,12 @@ export default function News() {
               <img
                 src={n.imageUrl}
                 alt=""
-                style={{ width: "100%", maxWidth: 420, borderRadius: 10, border: "1px solid #eee" }}
+                style={{
+                  width: "100%",
+                  maxWidth: 420,
+                  borderRadius: 10,
+                  border: "1px solid #eee",
+                }}
               />
             </div>
           ) : null}
@@ -254,20 +305,29 @@ export default function News() {
           <textarea
             placeholder="Excerpt (short text)"
             value={n.excerpt || ""}
-            onChange={(e) => update((d) => ((d.items[idx].excerpt = e.target.value), d))}
+            onChange={(e) =>
+              update((d) => ((d.items[idx].excerpt = e.target.value), d))
+            }
             style={{ ...input(), marginTop: 10, minHeight: 90 }}
           />
 
           <textarea
             placeholder="More text (shows when Learn More clicked)"
             value={n.moreText || ""}
-            onChange={(e) => update((d) => ((d.items[idx].moreText = e.target.value), d))}
+            onChange={(e) =>
+              update((d) => ((d.items[idx].moreText = e.target.value), d))
+            }
             style={{ ...input(), marginTop: 10, minHeight: 110 }}
           />
         </div>
       ))}
 
-      <button type="button" onClick={onSave} disabled={saving} style={btnPrimary(saving)}>
+      <button
+        type="button"
+        onClick={onSave}
+        disabled={saving}
+        style={btnPrimary(saving)}
+      >
         {saving ? "Saving..." : "Save News"}
       </button>
     </div>
@@ -275,16 +335,42 @@ export default function News() {
 }
 
 function input() {
-  return { padding: 10, borderRadius: 8, border: "1px solid #ccc", width: "100%" };
+  return {
+    padding: 10,
+    borderRadius: 8,
+    border: "1px solid #ccc",
+    width: "100%",
+  };
 }
 function box() {
-  return { border: "1px solid #e6e6e6", borderRadius: 10, padding: 12, marginTop: 12, background: "#fff" };
+  return {
+    border: "1px solid #e6e6e6",
+    borderRadius: 10,
+    padding: 12,
+    marginTop: 12,
+    background: "#fff",
+  };
 }
 function btn() {
-  return { padding: "10px 12px", borderRadius: 8, border: "1px solid #ccc", background: "#f7f7f7", cursor: "pointer" };
+  return {
+    padding: "10px 12px",
+    borderRadius: 8,
+    border: "1px solid #b30000",
+    background: "#fff",
+    cursor: "pointer",
+    color: "#b30000",
+    fontWeight: 700,
+  };
 }
 function btnDanger() {
-  return { padding: "10px 12px", borderRadius: 8, border: "1px solid #ffb3b3", background: "#fff0f0", cursor: "pointer", color: "#8a0b0b" };
+  return {
+    padding: "10px 12px",
+    borderRadius: 8,
+    border: "1px solid #ffb3b3",
+    background: "#fff0f0",
+    cursor: "pointer",
+    color: "#8a0b0b",
+  };
 }
 function btnPrimary(disabled) {
   return {

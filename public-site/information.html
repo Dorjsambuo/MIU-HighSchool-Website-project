@@ -1,178 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Information - Mongolian International School</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    /* Styles for news section */
-    .news-more {
-      display: none;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    
-    .news-card.expanded .news-more {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="menu-toggle" id="menu-toggle">☰</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Information - Mongolian International School</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="script/i18n.js"></script>
+    <style>
+      /* Styles for news section */
+      .news-more {
+        display: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .news-card.expanded .news-more {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="menu-toggle" id="menu-toggle">☰</div>
       <div class="logo">
         <a href="index.html">
-          <img src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg" alt="Mongolian Itgel School Logo">
+          <img
+            src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg"
+            alt="Mongolian Itgel School Logo"
+          />
         </a>
-        <span class="school-name">Mongolian Itgel School</span>
+        <span class="school-name" data-i18n="siteName"
+          >Mongolian Itgel School</span
+        >
       </div>
-    <ul class="nav-links">
-      <li class="dropdown">
-        <a href="index.html">About Us</a>
-        <ul class="dropdown-menu">
-          <li><a href="index.html#vice-greeting">Vice's Greeting</a></li>
-          <li><a href="index.html#mission-vision">Mission & Vision</a></li>
-          <li><a href="index.html#our-success">Our Success</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="programs.html">Programs</a>
-        <ul class="dropdown-menu">
-          <li><a href="programs.html#academic-calendar">Academic Calendar</a></li>
-          <li><a href="programs.html#activities">Extracurricular Activities</a></li>
-          <li><a href="programs.html#special-programs">Special Programs</a></li>
-          <li><a href="programs.html#volunteer">Volunteer</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="admissions.html">Admissions</a>
-        <ul class="dropdown-menu">
-          <li><a href="admissions.html#process">Process</a></li>
-          <li><a href="admissions.html#online">Online Admissions</a></li>
-          <li><a href="admissions.html#tuition">Tuition & Fees</a></li>
-        </ul>
-      </li>
-      <li><a href="information.html">Information</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-    </ul>
-  </nav>
+      <ul class="nav-links">
+        <li class="dropdown">
+          <a href="index.html" data-i18n="nav.about">About Us</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="index.html#vice-greeting" data-i18n="nav.viceGreeting"
+                >Vice's Greeting</a
+              >
+            </li>
+            <li>
+              <a href="index.html#mission-vision" data-i18n="nav.missionVision"
+                >Mission & Vision</a
+              >
+            </li>
+            <li>
+              <a href="index.html#our-success" data-i18n="nav.ourSuccess"
+                >Our Success</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="programs.html" data-i18n="nav.programs">Programs</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                href="programs.html#academic-calendar"
+                data-i18n="nav.academicCalendar"
+                >Academic Calendar</a
+              >
+            </li>
+            <li>
+              <a href="programs.html#activities" data-i18n="nav.activities"
+                >Extracurricular Activities</a
+              >
+            </li>
+            <li>
+              <a
+                href="programs.html#special-programs"
+                data-i18n="nav.specialPrograms"
+                >Special Programs</a
+              >
+            </li>
+            <li>
+              <a href="programs.html#volunteer" data-i18n="nav.volunteer"
+                >Volunteer</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="admissions.html" data-i18n="nav.admissions">Admissions</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="admissions.html#process" data-i18n="nav.process"
+                >Process</a
+              >
+            </li>
+            <li>
+              <a href="admissions.html#online" data-i18n="nav.onlineAdmissions"
+                >Online Admissions</a
+              >
+            </li>
+            <li>
+              <a href="admissions.html#tuition" data-i18n="nav.tuition"
+                >Tuition & Fees</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="information.html" data-i18n="nav.information">Information</a>
+        </li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+        <button id="lang-toggle" class="lang-switch mn">
+          <span class="lang-slider"></span>
+          <span class="lang-option" data-lang="mn">MN</span>
+          <span class="lang-option" data-lang="en">EN</span>
+        </button>
+      </ul>
+    </nav>
 
-  <!-- Page Header -->
-  <section class="page-header"></section>
+    <!-- Page Header -->
+    <section class="page-header"></section>
 
-  <!-- Breadcrumb Navigation -->
-  <nav class="breadcrumb">
-    <div class="container breadcrumb-content">
-      <div class="breadcrumb-links">
-        <a href="index.html">Home</a>
-        <span>›</span>
-        <span>Information</span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- News Section -->
-  <div class="section-header">
-  <h2 id="news-title"></h2>
-  <p id="news-subtitle"></p>
-</div>
-
-<div id="news-grid" class="news-grid"></div>
-
-
-  <!-- FAQ Section -->
-  <section id="faq" class="section" style="background: #f0f2f5;">
-  <div class="container">
+    <!-- News Section -->
     <div class="section-header">
-      <h2 id="faq-title">Frequently Asked Questions</h2>
-      <p id="faq-subtitle">Find answers to common questions</p>
+      <h2 id="news-title"></h2>
+      <p id="news-subtitle"></p>
     </div>
 
-    <div id="faq-list" class="faq-container"></div>
-  </div>
-</section>
+    <div id="news-grid" class="news-grid"></div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="programs.html">Programs</a></li>
-          <li><a href="admissions.html">Admissions</a></li>
-          <li><a href="information.html">Information</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+    <!-- FAQ Section -->
+    <section id="faq" class="section" style="background: #f0f2f5">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="faq-title" data-i18n="information.faqTitle">
+            Frequently Asked Questions
+          </h2>
+          <p id="faq-subtitle" data-i18n="information.faqSubtitle">
+            Find answers to common questions
+          </p>
+        </div>
+
+        <div id="faq-list" class="faq-container"></div>
       </div>
+    </section>
 
-      <div class="footer-section">
-        <h3>Contact Info</h3>
-        <p><i class="fas fa-map-marker-alt"></i> BZ district 13 khoroo.</p>
-        <p><i class="fas fa-phone"></i> +976 123-4567</p>
-        <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
-      </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3 data-i18n="footer.quickLinks">Quick Links</h3>
+          <ul>
+            <li><a href="index.html" data-i18n="footer.home">Home</a></li>
+            <li>
+              <a href="programs.html" data-i18n="nav.programs">Programs</a>
+            </li>
+            <li>
+              <a href="admissions.html" data-i18n="nav.admissions"
+                >Admissions</a
+              >
+            </li>
+            <li>
+              <a href="information.html" data-i18n="nav.information"
+                >Information</a
+              >
+            </li>
+            <li>
+              <a href="contact.html" data-i18n="footer.contact">Contact</a>
+            </li>
+          </ul>
+        </div>
 
-      <div class="footer-section map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCc INCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"></iframe>
-      </div>
+        <div class="footer-section">
+          <h3 data-i18n="footer.contactInfo">Contact Info</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            <span data-i18n="footer.address">BZ district 13 khoroo.</span>
+          </p>
+          <p><i class="fas fa-phone"></i> +976 123-4567</p>
+          <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
+        </div>
 
-      <div class="footer-section">
-        <h3>Connect With Us</h3>
-        <p>Follow us on social media for updates</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fas fa-envelope"></i></a>
+        <div class="footer-section map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1393.855032839151!2d106.97400759680339!3d47.91412936212881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDU0JzUxLjQiTiAxMDbCsDU4JzI4LjAiRQ!5e0!3m2!1sen!2smn!4v1786679402783!5m2!1sen!2smn"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.connect">Connect With Us</h3>
+          <p data-i18n="footer.followUs">
+            Follow us on social media for updates
+          </p>
+          <div class="social-icons">
+            <a href="#" id="social-facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" id="social-instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" id="social-email"><i class="fas fa-envelope"></i></a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="footer-bottom">
-      <p>© 2025 Mongolian Itgel School. All rights reserved.</p>
-    </div>
-  </footer>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">
+          © 2025 Mongolian Itgel School. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
-  <script>
-    // FAQ Accordion
-    document.addEventListener('DOMContentLoaded', function() {
-      // FAQ functionality
-      document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-          const item = question.parentElement;
-          item.classList.toggle('active');
+    <script>
+      // FAQ Accordion
+      document.addEventListener("DOMContentLoaded", function () {
+        // FAQ functionality
+        document.querySelectorAll(".faq-question").forEach((question) => {
+          question.addEventListener("click", () => {
+            const item = question.parentElement;
+            item.classList.toggle("active");
+          });
+        });
+
+        // News toggle functionality - SIMPLIFIED VERSION
+        document.querySelectorAll(".news-toggle").forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            const newsCard = this.closest(".news-card");
+
+            // Toggle expanded class
+            if (newsCard.classList.contains("expanded")) {
+              newsCard.classList.remove("expanded");
+              this.textContent = "Learn More";
+            } else {
+              newsCard.classList.add("expanded");
+              this.textContent = "Show Less";
+            }
+          });
         });
       });
+    </script>
 
-      // News toggle functionality - SIMPLIFIED VERSION
-      document.querySelectorAll('.news-toggle').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          const newsCard = this.closest('.news-card');
-          
-          // Toggle expanded class
-          if (newsCard.classList.contains('expanded')) {
-            newsCard.classList.remove('expanded');
-            this.textContent = 'Learn More';
-          } else {
-            newsCard.classList.add('expanded');
-            this.textContent = 'Show Less';
-          }
-        });
-      });
-    });
-  </script>
-
-
-  <script src="script/information.js"></script>
-
-</body>
+    <script src="script/information.js"></script>
+  </body>
 </html>

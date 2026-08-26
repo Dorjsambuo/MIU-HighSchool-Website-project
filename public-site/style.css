@@ -1,4 +1,4 @@
-/* ================= BASE STYLES ================= */
+/* ================= BASE STYLE ================= */
 * {
   margin: 0;
   padding: 0;
@@ -6,14 +6,14 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #f8f9fa;
 }
 
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
@@ -23,14 +23,14 @@ body {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 100;
   background: #c52233;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 50px;
-  min-height: 90px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 15px 50px;
+  min-height: 80px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -41,11 +41,11 @@ body {
 
 .logo a {
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   background: white;
   border-radius: 50%;
-  padding: 1px;
+  padding: 3px;
 }
 
 .logo img {
@@ -76,7 +76,7 @@ body {
   font-weight: 600;
   color: rgb(255, 255, 255);
   text-decoration: none;
-  padding: 8px 15px;
+  padding: 8px 12px;
   border-radius: 6px;
   transition: background 0.3s ease;
 }
@@ -93,53 +93,20 @@ body {
   cursor: pointer;
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 992px) {
-  .navbar {
-    padding: 15px 25px;
-  }
-
-  .school-name {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 90px;
-    left: 0;
-    width: 100%;
-    background: #c52233;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 0;
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-}
-
-/* Dropdown styles */
+/* Dropdown style */
 .dropdown {
   position: relative;
 }
 
-.dropdown-menu {
+.dropdown .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   background: white;
-  min-width: 240px;
-  border-radius: 5px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  min-width: 200px;
+  border-radius: 6px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
   z-index: 1001;
 }
 
@@ -175,14 +142,14 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 500px
+  min-height: 800px;
 }
 
 /* Breadcrumb Navigation */
 .breadcrumb {
   background: #c52233;
   padding: 15px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .breadcrumb-content {
@@ -209,12 +176,17 @@ body {
 
 /* ================= SECTION STYLES ================= */
 .section {
-  padding: 60px 0;
+  padding: 80px 0;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
+}
+
+/* Page Header-ийн шууд доор байрлах Section Header (School News)-т дээрээс нь зай авна */
+.page-header + .section-header {
+  margin-top: 80px;
 }
 
 .section-header h2 {
@@ -226,22 +198,242 @@ body {
 }
 
 .section-header h2::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -10px;
+  bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
   width: 60px;
-  height: 4px;
+  height: 3px;
   background: #c52233;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .section-header p {
   font-size: 1.1rem;
   color: #666;
   max-width: 600px;
-  margin: 25px auto 0;
+  margin: 15px auto 0;
+}
+
+.breadcrumb + .section-header {
+  padding-top: 60px;
+}
+
+/* ================= DYNAMIC SECTIONS (INDEX.JS-ТЭЙ ТААРСАН) ================= */
+
+/* JS-ээр шинээр нэмэгдэж буй 3 дахь болон түүнээс дээш секшнүүдийн Grid */
+.dynamic-mission-sections,
+.dynamic-sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 1170px;
+  margin: 20px auto 0 auto;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+/* JS-ээр үүсч буй картын дизайн */
+.dynamic-mission-card,
+.dynamic-section-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.dynamic-mission-card h3,
+.dynamic-section-card h3 {
+  color: #c52233;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.dynamic-mission-card p,
+.dynamic-section-card p {
+  margin: 0;
+  line-height: 1.6;
+  color: #333333;
+  font-size: 16px;
+  word-break: break-word;
+}
+
+.lang-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 90px;
+  height: 38px;
+  background: #fff;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.lang-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #c52233;
+  border-radius: 25px;
+  transition: transform 0.25s ease;
+  z-index: 1;
+}
+
+/* EN идэвхтэй үед slider баруун тийш шилжинэ */
+.lang-switch.en .lang-slider {
+  transform: translateX(100%);
+}
+
+.lang-option {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  transition: color 0.25s ease;
+  pointer-events: none;
+  color: #c52233;
+}
+
+/* Идэвхтэй үгийн өнгө цагаан болно (улаан дэвсгэр дээр) */
+.lang-switch.mn .lang-option[data-lang="mn"],
+.lang-switch.en .lang-option[data-lang="en"] {
+  color: #fff;
+}
+
+/* ================= CARD HOVER EFFECT (CSS ONLY, HTML-Д ХҮРЭЭГҮЙ) ================= */
+#mission-vision .container > div:nth-of-type(2) > div,
+.dynamic-mission-card,
+.dynamic-section-card {
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#mission-vision .container > div:nth-of-type(2) > div:hover,
+.dynamic-mission-card:hover,
+.dynamic-section-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ================= ACTIVITIES & VOLUNTEER STYLES ================= */
+#activities-grid,
+#volunteer-grid,
+#special-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* Hover-тэй card-ууд (Activities, Volunteer) */
+.activity-card,
+.volunteer-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.activity-card:hover,
+.volunteer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover-гүй card (Special Programs) */
+.program-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-image,
+.volunteer-image {
+  width: 100%;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #eee;
+  transition: transform 0.35s ease;
+}
+
+.activity-card:hover .activity-image,
+.volunteer-card:hover .volunteer-image {
+  transform: scale(1.05);
+}
+
+.activity-content,
+.volunteer-content {
+  padding: 20px;
+}
+
+.activity-content h3,
+.volunteer-content h3 {
+  color: #0f2d56;
+  margin-bottom: 10px;
+}
+
+/* ================= FEATURES ================= */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.feature-card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  font-size: 36px;
+  color: #c52233;
+  margin-bottom: 15px;
+}
+
+/* ================= CAFETERIA ================= */
+.cafeteria-section {
+  margin-top: 60px;
+}
+
+.cafeteria-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.cafeteria-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ================= BUTTONS ================= */
@@ -255,7 +447,7 @@ body {
   font-weight: 600;
   font-size: 15px;
   border: 2px solid #c52233;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .btn:hover {
@@ -263,35 +455,13 @@ body {
   color: #c52233;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ================= IMPROVED CALENDAR BUTTONS ================= */
+/* ================= CALENDAR ================= */
 .calendar-nav {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 25px;
-  margin-bottom: 30px;
+  margin-bottom: 120px;
 }
 
 .calendar-nav h3 {
@@ -309,12 +479,11 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  font-size: 26px;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-/* Calendar Days Grid */
 .weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -338,30 +507,22 @@ body {
   align-items: center;
   justify-content: center;
   background: #f8f9fa;
-  border-radius: 5px;
+  border-radius: 4px;
   font-weight: 500;
   position: relative;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .day:hover {
   background: #e9ecef;
 }
 
-.day.event {
-  background: #ffebee;
-  border: 2px solid #c52233;
-}
-
-.day.holiday {
-  background: #ffebee;
-  border: 2px solid #c52233;
-}
-
+.day.event,
+.day.holiday,
 .day.academic {
   background: #ffebee;
-  border: 2px solid #c52233;
+  border: 1px solid #c52233;
 }
 
 .event-dot {
@@ -372,13 +533,12 @@ body {
   margin-top: 5px;
 }
 
-/* Calendar Explanation */
 .calendar-explanation {
   background: white;
   border-radius: 10px;
   padding: 25px;
-  margin-top: 30px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-top: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .explanation-title {
@@ -408,18 +568,57 @@ body {
 }
 
 .event-date {
-  min-width: 80px;
+  min-width: 120px;
   font-weight: 600;
   color: #0f2d56;
 }
 
 .event-desc {
   color: #666;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* ================= RED FOOTER ================= */
-.footer {
+/* ================= VICE GREETING STYLING ================= */
+#vice-img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+#vice-title {
+  color: #0f2d56;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+#vice-p1 {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+#vice-p2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0f2d56;
+  margin-bottom: 20px;
+}
+
+#vice-sign {
+  margin-top: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f2d56;
+  line-height: 1.7;
+}
+
+/* ================= FOOTER ================= */
+footer {
   background: #c52233;
   color: white;
   padding: 50px 0 20px;
@@ -431,7 +630,7 @@ body {
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .footer-section h3 {
@@ -447,7 +646,7 @@ body {
 
 .footer-section li {
   margin-bottom: 8px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
 }
 
@@ -456,14 +655,14 @@ body {
 }
 
 .footer-section p {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 8px;
   line-height: 1.6;
   font-size: 14px;
 }
 
 .footer-section a {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
 }
 
@@ -472,19 +671,18 @@ body {
   text-decoration: underline;
 }
 
-/* Map container adjusted */
 .map-container {
   grid-column: span 2;
   position: relative;
-  left: -20px;
-  width: calc(100% + 40px);
+  left: 0;
+  width: 100%;
 }
 
 .map-container iframe {
-  width: 100%;
-  height: 300px;
+  width: 650px;
+  height: 350px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .social-icons {
@@ -499,99 +697,82 @@ body {
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   color: white;
   font-size: 16px;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
 .social-icons a:hover {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .footer-bottom {
   text-align: center;
   margin-top: 40px;
   padding-top: 15px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.8);
-  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
 }
 
-/* ================= REMOVE HOVER MOVEMENTS ================= */
-.tuition-card:hover,
-.contact-card:hover,
-.activity-card:hover,
-.program-card:hover,
-.volunteer-card:hover,
-.faq-item:hover {
-  transform: none;
-}
-
-/* Keep hover effects without movement */
-.tuition-card:hover,
-.contact-card:hover {
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-/* NEWS layout */
-.news-grid{
-  max-width: 1100px;
+/* ================= NEWS LAYOUT ================= */
+.news-grid {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px 40px;
+  padding: 0 15px 40px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  gap: 20px;
 }
 
-@media (max-width: 980px){
-  .news-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 640px){
-  .news-grid{ grid-template-columns: 1fr; }
-}
-
-/* NEWS cards */
-.news-card{
+.news-card {
   background: #fff;
-  border-radius: 14px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 8px 22px rgba(0,0,0,.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* CRITICAL: stop images from becoming huge */
 .news-card img,
-.news-img{
+.news-img {
   width: 100%;
-  height: 220px;       /* <- controls “how big” it looks */
+  height: 220px;
   object-fit: cover;
   display: block;
 }
 
-/* Spacing inside cards */
-.news-card h3{ margin: 14px 16px 6px; }
-.news-card small{ display:block; margin: 0 16px 10px; opacity: .7; }
-.news-card p{ margin: 0 16px 14px; line-height: 1.45; }
-
-/* Button/link */
-.news-toggle{
-  display: inline-block;
-  margin: 0 16px 16px;
+.news-card h3 {
+  margin: 14px 15px 6px;
 }
 
+.news-card small {
+  display: block;
+  margin: 0 15px 10px;
+  opacity: 0.7;
+}
+
+.news-card p {
+  margin: 0 15px 15px;
+  line-height: 1.45;
+}
+
+.news-toggle {
+  display: inline-block;
+  margin: 0 15px 15px;
+}
 
 /* ================= FAQ STYLES ================= */
 .faq-container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .faq-item {
   background: white;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 15px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
@@ -601,10 +782,12 @@ body {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600; /* Асуултын гарчгийг хариултаасаа илүү тод болгосон */
   color: #0f2d56;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   background: #f8f9fa;
+  user-select: none;
+  transition: background-color 0.2s ease;
 }
 
 .faq-question:hover {
@@ -612,30 +795,39 @@ body {
 }
 
 .faq-question i {
-  transition: transform 0.2s;
+  transition: transform 0.3s ease;
 }
 
 .faq-item.active .faq-question i {
   transform: rotate(180deg);
 }
 
+/* --- CSS Grid-ээр зөөлөн нээгдэж хаагдах хэсэг --- */
 .faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0 20px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
   white-space: pre-line;
 }
 
+.faq-answer > * {
+  overflow: hidden; /* Агуулга цухуйхаас сэргийлнэ */
+}
+
 .faq-item.active .faq-answer {
-  max-height: 500px;
-  padding: 20px;
+  grid-template-rows: 1fr;
+  padding: 15px 20px 20px 20px;
 }
 
 .faq-answer p {
-  color: #666;
+  color: #555;
   line-height: 1.6;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px 10px 10px 10px;
 }
 
 .faq-answer ul {
@@ -645,24 +837,47 @@ body {
 
 .faq-answer li {
   margin-bottom: 8px;
-  color: #666;
+  color: #555;
   line-height: 1.6;
 }
 
-/* ================= UTILITY CLASSES ================= */
-.text-center { text-align: center; }
-.mt-20 { margin-top: 20px; }
-.mt-40 { margin-top: 40px; }
-.mb-20 { margin-bottom: 20px; }
-.mb-40 { margin-bottom: 40px; }
+/* --- Гар утас, жижиг дэлгэцийн тохиргоо --- */
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 1.1rem; /* Утас дээр асуултыг хэт том харагдахаас сэргийлсэн */
+    padding: 16px;
+  }
 
+  .faq-item.active .faq-answer {
+    padding: 10px 16px 16px 16px;
+  }
+}
+
+/* ================= UTILITY CLASSES ================= */
+.text-center {
+  text-align: center;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+/* ================= RESPONSIVE ================= */
 @media (max-width: 992px) {
   .navbar {
     padding: 15px 25px;
   }
 
   .logo {
-    margin-right: 30px;
+    margin-right: 70px;
   }
 
   .school-name {
@@ -679,15 +894,15 @@ body {
   }
 
   .dropdown-menu a {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .page-header {
-    padding: 80px 0;
+    padding: 90px 0;
   }
 
   .map-container {
-    grid-column: span 1;
+    grid-column: span 2;
     width: 100%;
     left: 0;
   }
@@ -697,11 +912,10 @@ body {
   }
 
   .news-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* ---------- Tablets & mobile ---------- */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -715,7 +929,7 @@ body {
     left: 0;
     right: 0;
     background: #c52233;
-    padding: 15px;
+    padding: 14px;
     gap: 12px;
   }
 
@@ -730,18 +944,18 @@ body {
   .dropdown-menu {
     position: static;
     box-shadow: none;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .dropdown-menu a {
     color: white;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .section {
-    padding: 40px 0;
+    padding: 44px 0;
   }
 
   .section-header h2 {
@@ -766,14 +980,22 @@ body {
     min-width: auto;
   }
 
-  .calendar-buttons button {
-    width: 55px;
-    height: 55px;
-    font-size: 24px;
+  .cafeteria-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .dynamic-mission-sections,
+  .dynamic-sections {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-/* ---------- Small phones ---------- */
 @media (max-width: 480px) {
   .navbar {
     min-height: 80px;
@@ -792,7 +1014,7 @@ body {
     font-size: 1.6rem;
   }
 
-  .footer {
+  footer {
     padding: 40px 0 15px;
   }
 
@@ -800,51 +1022,4 @@ body {
     height: 45px;
     font-size: 0.9rem;
   }
-
-  .calendar-buttons button {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-  }
 }
-
-#vice-img {
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-  display: block;
-}
-
-/* ===== Vice Greeting Text Styling ===== */
-
-#vice-title {
-  color: #0f2d56;          /* dark blue */
-  font-size: 1.6rem;       /* bigger headline */
-  font-weight: 700;        /* bold */
-  margin-bottom: 18px;
-}
-
-#vice-p1 {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 12px;
-  color: #333;
-}
-
-#vice-p2 {
-  font-size: 1.2rem;       /* slightly bigger */
-  font-weight: 600;        /* semi-bold */
-  color: #0f2d56;          /* same dark blue */
-  margin-bottom: 20px;
-}
-
-#vice-sign {
-  margin-top: 25px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #0f2d56;
-  line-height: 1.7;
-}
-

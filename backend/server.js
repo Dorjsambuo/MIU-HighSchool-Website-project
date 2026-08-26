@@ -1,5 +1,6 @@
 // server.js (ESM) - Mongo backend for MIU site
 
+import jwt from "jsonwebtoken";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -33,7 +34,7 @@ app.use(
       return cb(new Error("Not allowed by CORS"));
     },
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json({ limit: "5mb" }));
@@ -48,7 +49,6 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}-${safe}`);
   },
 });
-
 
 const upload = multer({ storage });
 
@@ -67,7 +67,7 @@ const SectionSchema = new mongoose.Schema(
     key: { type: String, unique: true, index: true },
     data: { type: mongoose.Schema.Types.Mixed, default: {} },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 const Section = mongoose.model("Section", SectionSchema);
 
@@ -80,7 +80,7 @@ const UploadSchema = new mongoose.Schema(
     mimetype: String,
     size: Number,
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 const Upload = mongoose.model("Upload", UploadSchema);
 
@@ -89,7 +89,7 @@ async function ensureSection(key, defaultData) {
   await Section.findOneAndUpdate(
     { key },
     { $setOnInsert: { key, data: defaultData } },
-    { upsert: true }
+    { upsert: true },
   );
 }
 
@@ -102,41 +102,97 @@ async function setSection(key, data) {
   await Section.findOneAndUpdate(
     { key },
     { key, data },
-    { upsert: true, new: true }
+    { upsert: true, new: true },
   );
 }
 
 // ----- Seed defaults (runs once because of $setOnInsert)
 await ensureSection("vice", {
   imageUrl: "",
-  title: "Dear Students, Parents, and Community,",
-  p1: "Welcome to Mongolian International School.",
-  p2: "As the Vice Principal, ...",
-  signatureHtml: "Mr.<br/>Vice Principal",
+  title: {
+    en: "Dear Students, Parents, and Community,",
+    mn: "Эрхэм оюутан, эцэг эх, олон нийтэд,",
+  },
+  p1: {
+    en: "Welcome to Mongolian International School.",
+    mn: "Монголын Итгэл Сургуульд тавтай морил.",
+  },
+  p2: {
+    en: "As the Vice Principal, ...",
+    mn: "Дэд захирлын хувьд ...",
+  },
+  signatureHtml: {
+    en: "Mr.<br/>Vice Principal",
+    mn: "Ноён.<br/>Дэд захирал",
+  },
 });
 
 await ensureSection("missionVision", {
-  mission: "To provide a high-quality international education ...",
-  vision: "To be a leading international school ...",
+  mission: {
+    en: "To provide a high-quality international education ...",
+    mn: "Олон улсын өндөр чанартай боловсрол олгох ...",
+  },
+  vision: {
+    en: "To be a leading international school ...",
+    mn: "Тэргүүлэх олон улсын сургууль болох ...",
+  },
+
+  sections: [
+    {
+      id: 1,
+      title: "Our Mission",
+      content: {
+        en: "To provide a high-quality international education ...",
+        mn: "Олон улсын өндөр чанартай боловсрол олгох ...",
+      },
+    },
+    {
+      id: 2,
+      title: "Our Vision",
+      content: {
+        en: "To be a leading international school ...",
+        mn: "Тэргүүлэх олон улсын сургууль болох ...",
+      },
+    },
+  ],
 });
 
 await ensureSection("success", {
-  subtitle: "Celebrating achievements and milestones",
-  graduates: "123",
-  awards: "Recognized for excellence in education",
-  community: "Active participation in community service projects",
+  subtitle: {
+    en: "Celebrating achievements and milestones",
+    mn: "Амжилт, түүхэн үйл явдлуудыг тэмдэглэж байна",
+  },
+  graduates: { en: "500", mn: "500" },
+  awards: {
+    en: "Recognized for excellence in education",
+    mn: "Боловсролын чанараар шалгарсан",
+  },
+  community: {
+    en: "Active participation in community service projects",
+    mn: "Олон нийтийн үйл ажиллагаанд идэвхтэй оролцдог",
+  },
 });
 
 await ensureSection("cafeteria", {
-  title: "School Cafeteria",
-  subtitle: "Healthy and nutritious meals for our students",
-  heading: "Nutrition-Focused Meals",
-  text:
-    "Our cafeteria provides balanced meals prepared daily by professional chefs using fresh ingredients...",
+  title: { en: "School Cafeteria", mn: "Сургуулийн хоолны газар" },
+  subtitle: {
+    en: "Healthy and nutritious meals for our students",
+    mn: "Сурагчдад эрүүл, тэжээллэг хоол",
+  },
+  heading: {
+    en: "Nutrition-Focused Meals",
+    mn: "Тэжээллэг хоолонд чиглэсэн",
+  },
+  text: {
+    en: "Our cafeteria provides balanced meals prepared daily by professional chefs using fresh ingredients...",
+    mn: "Манай хоолны газар мэргэжлийн тогооч нарын өдөр бүр бэлтгэдэг тэнцвэртэй хоолыг шинэ хүнс ашиглан бэлтгэдэг...",
+  },
   imageUrl: "",
 });
 
-await ensureSection("banner", { imageUrl: "/uploads/556981901_1889760831840412_9179320815925247158_n.jpg" });
+await ensureSection("banner", {
+  imageUrl: "/uploads/556981901_1889760831840412_9179320815925247158_n.jpg",
+});
 
 // Calendar format: { events: { "YYYY-MM-DD": { type, title, fullDesc } } }
 await ensureSection("calendar", { events: {} });
@@ -150,24 +206,25 @@ await ensureSection("activities", {
       description: "Develop athletic skills and teamwork.",
       time: "Wed 3:40-5:00 PM",
       grades: "Grades 9-12",
-      imageUrl: "/uploads/568292496_1908326693317159_3626035863105372190_n.jpg"
+      imageUrl: "/uploads/568292496_1908326693317159_3626035863105372190_n.jpg",
     },
     {
       title: "Taekwondo Club",
       description: "Develop athletic skills and teamwork.",
       time: " Mon/Wed 4:00-5:30 PM",
       grades: "Grades 7-12",
-      imageUrl: "/uploads/559235804_1895783727904789_3739476468778142488_n.jpg"
+      imageUrl: "/uploads/559235804_1895783727904789_3739476468778142488_n.jpg",
     },
     {
       title: "Music & Arts",
-      description: "Explore creativity through various art forms and musical instruments.",
+      description:
+        "Explore creativity through various art forms and musical instruments.",
       time: "Tue 3:40-5:00 PM",
       grades: "All Grades",
-      imageUrl: "/uploads/497537379_1768540893962407_7532981151105264191_n.jpg"
-    }],
-},
-);
+      imageUrl: "/uploads/497537379_1768540893962407_7532981151105264191_n.jpg",
+    },
+  ],
+});
 
 await ensureSection("specialPrograms", {
   title: "Special Programs",
@@ -193,28 +250,32 @@ await ensureSection("specialPrograms", {
   ],
 });
 
-
 await ensureSection("volunteer", {
   title: "Volunteer Programs",
   subtitle: "Make a difference in your community",
   items: [
     {
       title: "Tutoring Program",
-      description: "Help elementary school students with reading and math skills. Training provided for all volunteers.",
-      imageUrl: "/uploads/1769940668925-571824159_1915855125897649_9209040587861907538_n.jpg"
+      description:
+        "Help elementary school students with reading and math skills. Training provided for all volunteers.",
+      imageUrl:
+        "/uploads/1769940668925-571824159_1915855125897649_9209040587861907538_n.jpg",
     },
     {
       title: "Environmental Club",
-      description: "Participate in tree planting, recycling campaigns, and community cleanups.",
-      imageUrl: "/uploads/1769940717539-1542.jpg"
+      description:
+        "Participate in tree planting, recycling campaigns, and community cleanups.",
+      imageUrl: "/uploads/1769940717539-1542.jpg",
     },
     {
       title: "Community Service",
-      description: "Work with local organizations to support community development projects.",
-      imageUrl: "/uploads/1769940756304-566387587_1908325923317236_7524284606729972988_n.jpg"
-    }],
-},
-);
+      description:
+        "Work with local organizations to support community development projects.",
+      imageUrl:
+        "/uploads/1769940756304-566387587_1908325923317236_7524284606729972988_n.jpg",
+    },
+  ],
+});
 
 await ensureSection("process", {
   title: "Admissions Process",
@@ -222,43 +283,43 @@ await ensureSection("process", {
   steps: [
     {
       title: "Inquiry & Information",
-      description: "Start by learning about our school programs and curriculum.",
+      description:
+        "Start by learning about our school programs and curriculum.",
       bullets: [
         "Attend Open House sessions",
         "Review academic programs",
         "Contact admissions office",
-        "Schedule campus tour"
-      ]
+        "Schedule campus tour",
+      ],
     },
     {
       title: "Application Submission",
-      description: "Submit the complete application package including all required documents.",
+      description:
+        "Submit the complete application package including all required documents.",
       bullets: [
         "Complete online application form",
         "Submit academic records",
-        "Provide birth certificate copy"
-      ]
+        "Provide birth certificate copy",
+      ],
     },
     {
       title: "Assessment & Interview",
-      description: "Students are invited for assessment and interview for placement.",
-      bullets: [
-        "Academic assessment",
-        "English proficiency test"
-      ]
+      description:
+        "Students are invited for assessment and interview for placement.",
+      bullets: ["Academic assessment", "English proficiency test"],
     },
     {
       title: "Admission Decision",
-      description: "Receive admission decision and complete enrollment process.",
+      description:
+        "Receive admission decision and complete enrollment process.",
       bullets: [
         "Decision within 2 weeks",
         "Submit enrollment agreement",
-        "Attend orientation"
-      ]
-    }
-  ]
+        "Attend orientation",
+      ],
+    },
+  ],
 });
-
 
 await ensureSection("application", {
   sectionTitle: "Online Admissions",
@@ -284,7 +345,6 @@ await ensureSection("application", {
 
   helpText: "Need help? Contact admissions@mis.edu.mn",
 });
-
 
 await ensureSection("tuition", {
   sectionTitle: "Tuition & Fees",
@@ -323,7 +383,6 @@ await ensureSection("tuition", {
   ],
 });
 
-
 await ensureSection("news", {
   sectionTitle: "School News",
   sectionSubtitle: "Latest updates from our school",
@@ -335,8 +394,7 @@ await ensureSection("news", {
         "Our students achieved remarkable success at the annual science fair, winning multiple awards for innovative projects.",
       moreText:
         'Renewable Energy Solutions for Rural Mongolia," was developed by 11th-grade students and received special recognition from the Ministry of Education.',
-      imageUrl:
-        "/uploads/1111",
+      imageUrl: "/uploads/1111",
     },
     {
       title: "New Library Opening",
@@ -344,47 +402,51 @@ await ensureSection("news", {
       excerpt: "We are excited to announce the opening of our new library.",
       moreText:
         "The new library features state-of-the-art facilities including quiet study areas, group collaboration spaces, and a digital media center. With over 5,000 physical books, students now have unprecedented access to learning materials.",
-      imageUrl:
-        "/uploads/1112",
+      imageUrl: "/uploads/1112",
     },
     {
       title: "Sports Tournament Success",
       date: "August 20, 2025",
-      excerpt: "Our school basketball team won the regional championship tournament.",
+      excerpt:
+        "Our school basketball team won the regional championship tournament.",
       moreText:
         "The school's basketball team demonstrated exceptional skill and determination throughout the regional tournament.",
-      imageUrl:
-        "/uploads/1345",
+      imageUrl: "/uploads/1345",
     },
   ],
 });
 
 await ensureSection("faq", {
-  "sectionTitle": "Frequently Asked Questions",
-  "sectionSubtitle": "Find answers to common questions",
-  "items": [
+  sectionTitle: "Frequently Asked Questions",
+  sectionSubtitle: "Find answers to common questions",
+  items: [
     {
-      "question": "What is the application deadline?",
-      "answer": "Applications are accepted year-round, but we recommend applying by April 30th for the following academic year starting in August."
+      question: "What is the application deadline?",
+      answer:
+        "Applications are accepted year-round, but we recommend applying by April 30th for the following academic year starting in August.",
     },
     {
-      "question": "What documents are required for admission?",
-      "answer": "Required documents include:\n- Completed application form\n- Previous academic transcripts (2 years)\n- Birth certificate or passport copy\n- Parent/guardian identification\n- Teacher recommendations"
+      question: "What documents are required for admission?",
+      answer:
+        "Required documents include:\n- Completed application form\n- Previous academic transcripts (2 years)\n- Birth certificate or passport copy\n- Parent/guardian identification\n- Teacher recommendations",
     },
     {
-      "question": "Is there an entrance exam?",
-      "answer": "Yes, students in grades 3-12 take an entrance assessment including:\n- English language proficiency test\n- Mathematics assessment\n- Reading comprehension (for grades 6-12)\n- Writing sample (for grades 9-12)"
+      question: "Is there an entrance exam?",
+      answer:
+        "Yes, students in grades 3-12 take an entrance assessment including:\n- English language proficiency test\n- Mathematics assessment\n- Reading comprehension (for grades 6-12)\n- Writing sample (for grades 9-12)",
     },
     {
-      "question": "What curriculum does the school follow?",
-      "answer": "We follow an international curriculum combining:\n- American Common Core Standards for English and Math\n- British curriculum for Sciences\n- Advanced Placement (AP) courses for high school\n- Mongolian language and cultural studies\n- English language programs"
+      question: "What curriculum does the school follow?",
+      answer:
+        "We follow an international curriculum combining:\n- American Common Core Standards for English and Math\n- British curriculum for Sciences\n- Advanced Placement (AP) courses for high school\n- Mongolian language and cultural studies\n- English language programs",
     },
     {
-      "question": "Are scholarships available?",
-      "answer": "Yes, we offer several scholarship opportunities:\n- Academic Excellence Scholarship: For top-performing students\n- Need-Based Financial Aid: For families with financial constraints\n- Sports Scholarship: For exceptional athletes\n\nApplications must be submitted by March 31st each year."
-    }
-  ]
-})
+      question: "Are scholarships available?",
+      answer:
+        "Yes, we offer several scholarship opportunities:\n- Academic Excellence Scholarship: For top-performing students\n- Need-Based Financial Aid: For families with financial constraints\n- Sports Scholarship: For exceptional athletes\n\nApplications must be submitted by March 31st each year.",
+    },
+  ],
+});
 
 await ensureSection("contact", {
   sectionTitle: "Contact Information",
@@ -392,22 +454,22 @@ await ensureSection("contact", {
   address: {
     org: "Mongolian Itgel School",
     line1: "Bayanzurkh District, 13khoroo",
-    line2: "Ulaanbaatar, Mongolia"
+    line2: "Ulaanbaatar, Mongolia",
   },
   phones: {
     mainOffice: "+976 123-4567",
-    admissions: "+976 123-4568"
+    admissions: "+976 123-4568",
   },
   emails: {
     general: "info@mis.edu.mn",
     admissions: "admissions@mis.edu.mn",
-    registrar: "registrar@mis.edu.mn"
+    registrar: "registrar@mis.edu.mn",
   },
   socials: {
     facebook: "#",
     instagram: "#",
-    email: "mailto:info@mis.edu.mn"
-  }
+    email: "mailto:info@mis.edu.mn",
+  },
 });
 
 // -------------------- ROUTES --------------------
@@ -446,13 +508,105 @@ app.post("/api/vice", async (req, res) => {
 });
 
 // Mission & Vision (merge)
+// Mission & Vision
 app.get("/api/mission-vision", async (req, res) => {
-  res.json(await getSection("missionVision", {}));
+  try {
+    const data = await getSection("missionVision", {
+      mission: "",
+      vision: "",
+      sections: [],
+    });
+
+    // New structure already exists
+    if (Array.isArray(data.sections)) {
+      return res.json({
+        ...data,
+        sections: data.sections,
+      });
+    }
+
+    // Backward compatibility:
+    // Convert old mission + vision into sections
+    const sections = [
+      {
+        id: 1,
+        title: "Our Mission",
+        content: data.mission || "",
+      },
+      {
+        id: 2,
+        title: "Our Vision",
+        content: data.vision || "",
+      },
+    ];
+
+    res.json({
+      ...data,
+      sections,
+    });
+  } catch (error) {
+    console.error("GET /api/mission-vision failed:", error);
+
+    res.status(500).json({
+      error: "Failed to load Mission & Vision",
+    });
+  }
 });
+
 app.post("/api/mission-vision", async (req, res) => {
-  const current = await getSection("missionVision", {});
-  await setSection("missionVision", { ...current, ...req.body });
-  res.json({ success: true });
+  try {
+    const current = await getSection("missionVision", {});
+
+    const sections = Array.isArray(req.body.sections)
+      ? req.body.sections.map((section, index) => ({
+          id: section.id ?? Date.now() + index,
+          title: String(section.title ?? ""),
+          content: section.content ?? { en: "", mn: "" },
+        }))
+      : [];
+
+    // Keep old mission/vision fields for compatibility
+    let mission = current.mission || "";
+    let vision = current.vision || "";
+
+    if (sections.length > 0) {
+      const missionSection = sections.find(
+        (section) => section.title.toLowerCase().trim() === "our mission",
+      );
+
+      const visionSection = sections.find(
+        (section) => section.title.toLowerCase().trim() === "our vision",
+      );
+
+      if (missionSection) {
+        mission = missionSection.content;
+      }
+
+      if (visionSection) {
+        vision = visionSection.content;
+      }
+    }
+
+    await setSection("missionVision", {
+      ...current,
+
+      mission,
+      vision,
+
+      sections,
+    });
+
+    res.json({
+      success: true,
+      sections,
+    });
+  } catch (error) {
+    console.error("POST /api/mission-vision failed:", error);
+
+    res.status(500).json({
+      error: "Failed to save Mission & Vision",
+    });
+  }
 });
 
 // Success (merge)
@@ -496,7 +650,7 @@ app.get("/api/activities", async (req, res) => {
       title: "Extracurricular Activities",
       subtitle: "Enriching experiences beyond the classroom",
       items: [],
-    })
+    }),
   );
 });
 app.put("/api/activities", async (req, res) => {
@@ -571,6 +725,42 @@ app.post("/api/calendar/event", async (req, res) => {
   res.json({ success: true, calendar: cal });
 });
 
+app.post("/admin/login", (req, res) => {
+  const { username, password } = req.body;
+
+  const adminUsername = process.env.ADMIN_USERNAME;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  const jwtSecret = process.env.JWT_SECRET;
+
+  if (!adminUsername || !adminPassword || !jwtSecret) {
+    return res.status(500).json({
+      message: "Admin authentication is not configured",
+    });
+  }
+
+  if (username !== adminUsername || password !== adminPassword) {
+    return res.status(401).json({
+      message: "Invalid username or password",
+    });
+  }
+
+  const token = jwt.sign(
+    {
+      username: adminUsername,
+      role: "admin",
+    },
+    jwtSecret,
+    {
+      expiresIn: "8h",
+    },
+  );
+
+  res.json({
+    message: "Login successful",
+    token,
+  });
+});
+
 // ----- Start
 app.listen(PORT, () => {
   console.log(`🚀 Backend running on http://localhost:${PORT}`);
@@ -582,7 +772,7 @@ app.get("/api/volunteer", async (req, res) => {
       title: "Volunteer Programs",
       subtitle: "Make a difference in your community",
       items: [],
-    })
+    }),
   );
 });
 app.put("/api/volunteer", async (req, res) => {
@@ -600,7 +790,6 @@ app.put("/api/volunteer", async (req, res) => {
   await setSection("volunteer", next);
   res.json({ success: true });
 });
-
 
 // Admissions Process
 app.get("/api/process", async (req, res) => {
@@ -620,7 +809,6 @@ app.put("/api/process", async (req, res) => {
   });
   res.json({ success: true });
 });
-
 
 // GET
 app.get("/api/application", async (req, res) => {
@@ -658,7 +846,7 @@ app.put("/api/application", async (req, res) => {
     await Section.updateOne(
       { key: "application" },
       { $set: { data: clean } },
-      { upsert: true }
+      { upsert: true },
     );
 
     res.json({ ok: true });
@@ -667,7 +855,6 @@ app.put("/api/application", async (req, res) => {
     res.status(500).json({ error: "Failed to save application" });
   }
 });
-
 
 app.get("/api/tuition", async (req, res) => {
   try {
@@ -686,11 +873,11 @@ app.get("/api/tuition", async (req, res) => {
             const items = Array.isArray(c.items)
               ? c.items
               : Array.isArray(c.fees)
-              ? c.fees.map((f) => ({
-                  label: f.name ?? "",
-                  amount: f.amount ?? "",
-                }))
-              : [];
+                ? c.fees.map((f) => ({
+                    label: f.name ?? "",
+                    amount: f.amount ?? "",
+                  }))
+                : [];
 
             return {
               title: c.title ?? "",
@@ -732,11 +919,11 @@ app.put("/api/tuition", async (req, res) => {
             const rawItems = Array.isArray(c.items)
               ? c.items
               : Array.isArray(c.fees)
-              ? c.fees.map((f) => ({
-                  label: f.name ?? f.label ?? "",
-                  amount: f.amount ?? "",
-                }))
-              : [];
+                ? c.fees.map((f) => ({
+                    label: f.name ?? f.label ?? "",
+                    amount: f.amount ?? "",
+                  }))
+                : [];
 
             return {
               title: String(c?.title ?? ""),
@@ -758,13 +945,12 @@ app.put("/api/tuition", async (req, res) => {
   }
 });
 
-
 app.get("/api/news", async (req, res) => {
   try {
     const raw = await getSection("news", {
       sectionTitle: "School News",
       sectionSubtitle: "",
-      items: []
+      items: [],
     });
 
     // Backward compatible: if older data stored as an array, wrap it
@@ -773,7 +959,7 @@ app.get("/api/news", async (req, res) => {
       : {
           sectionTitle: String(raw?.sectionTitle ?? "School News"),
           sectionSubtitle: String(raw?.sectionSubtitle ?? ""),
-          items: Array.isArray(raw?.items) ? raw.items : []
+          items: Array.isArray(raw?.items) ? raw.items : [],
         };
 
     res.json(normalized);
@@ -800,9 +986,9 @@ app.put("/api/news", async (req, res) => {
             date: String(n?.date ?? ""),
             imageUrl: String(n?.imageUrl ?? ""),
             excerpt: String(n?.excerpt ?? ""),
-            moreText: String(n?.moreText ?? "")
+            moreText: String(n?.moreText ?? ""),
           }))
-        : []
+        : [],
     };
 
     await setSection("news", clean);
@@ -819,7 +1005,7 @@ app.get("/api/faq", async (req, res) => {
     const raw = await getSection("faq", {
       sectionTitle: "Frequently Asked Questions",
       sectionSubtitle: "Find answers to common questions",
-      items: []
+      items: [],
     });
 
     // backward compatible: if older data stored as array, wrap it
@@ -827,12 +1013,16 @@ app.get("/api/faq", async (req, res) => {
       ? {
           sectionTitle: "Frequently Asked Questions",
           sectionSubtitle: "Find answers to common questions",
-          items: raw
+          items: raw,
         }
       : {
-          sectionTitle: String(raw?.sectionTitle ?? "Frequently Asked Questions"),
-          sectionSubtitle: String(raw?.sectionSubtitle ?? "Find answers to common questions"),
-          items: Array.isArray(raw?.items) ? raw.items : []
+          sectionTitle: String(
+            raw?.sectionTitle ?? "Frequently Asked Questions",
+          ),
+          sectionSubtitle: String(
+            raw?.sectionSubtitle ?? "Find answers to common questions",
+          ),
+          items: Array.isArray(raw?.items) ? raw.items : [],
         };
 
     res.json(normalized);
@@ -849,7 +1039,9 @@ app.put("/api/faq", async (req, res) => {
 
     const clean = {
       sectionTitle: String(b.sectionTitle ?? "Frequently Asked Questions"),
-      sectionSubtitle: String(b.sectionSubtitle ?? "Find answers to common questions"),
+      sectionSubtitle: String(
+        b.sectionSubtitle ?? "Find answers to common questions",
+      ),
       items: Array.isArray(b.items)
         ? b.items.map((x) => ({
             question: String(x?.question ?? ""),
@@ -886,22 +1078,22 @@ app.put("/api/contact", async (req, res) => {
       address: {
         org: String(b?.address?.org ?? ""),
         line1: String(b?.address?.line1 ?? ""),
-        line2: String(b?.address?.line2 ?? "")
+        line2: String(b?.address?.line2 ?? ""),
       },
       phones: {
         mainOffice: String(b?.phones?.mainOffice ?? ""),
-        admissions: String(b?.phones?.admissions ?? "")
+        admissions: String(b?.phones?.admissions ?? ""),
       },
       emails: {
         general: String(b?.emails?.general ?? ""),
         admissions: String(b?.emails?.admissions ?? ""),
-        registrar: String(b?.emails?.registrar ?? "")
+        registrar: String(b?.emails?.registrar ?? ""),
       },
       socials: {
         facebook: String(b?.socials?.facebook ?? "#"),
         instagram: String(b?.socials?.instagram ?? "#"),
-        email: String(b?.socials?.email ?? "")
-      }
+        email: String(b?.socials?.email ?? ""),
+      },
     };
 
     await setSection("contact", clean);

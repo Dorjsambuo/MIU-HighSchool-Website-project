@@ -1,400 +1,559 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admissions - Mongolian International School</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    /* Admissions Process Styles */
-    .process-steps {
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .process-steps::before {
-      content: '';
-      position: absolute;
-      left: 30px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, #c52233, #0f2d56);
-    }
-
-    .process-step {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 30px;
-      margin-bottom: 40px;
-      position: relative;
-    }
-
-    .step-number {
-      width: 60px;
-      height: 60px;
-      background: #c52233;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      z-index: 2;
-    }
-
-    .step-content {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-      border-left: 4px solid #c52233;
-    }
-
-    .step-content h3 {
-      color: #0f2d56;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-
-    .step-content p {
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
-
-    .step-details {
-      list-style: none;
-      padding: 0;
-      margin: 15px 0;
-    }
-
-    .step-details li {
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-    }
-
-
-    /* Admissions Container */
-    .admissions-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .requirements-box {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    }
-
-    .requirements-box h3 {
-      color: #0f2d56;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .requirements-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .requirements-list li {
-      margin-bottom: 12px;
-      padding-left: 25px;
-      position: relative;
-    }
-
-    .requirements-list li:before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: #c52233;
-      font-size: 1.2rem;
-    } 
-
-    /* Tuition Tables */
-    .tuition-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .tuition-card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    }
-
-    .tuition-header {
-      background: #c52233;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .tuition-header h3 {
-      margin-bottom: 5px;
-      font-size: 1.3rem;
-    }
-
-    .tuition-content {
-      padding: 25px;
-    }
-
-    .fee-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .fee-item:last-child {
-      border-bottom: none;
-    }
-
-    .fee-name {
-      color: #0f2d56;
-      font-weight: 500;
-    }
-
-    .fee-amount {
-      color: #c52233;
-      font-weight: 600;
-    }
-
-    /* Financial Aid */
-    .financial-aid {
-      background: #f0f9ff;
-      padding: 30px;
-      border-radius: 10px;
-      margin-top: 40px;
-      border-left: 4px solid #2c6bb8;
-    }
-
-    .financial-aid h3 {
-      color: #0f2d56;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .process-step {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-
-      .step-number {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admissions - Mongolian International School</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="script/i18n.js"></script>
+    <style>
+      /* Admissions Process Styles */
+      .process-steps {
+        max-width: 850px;
         margin: 0 auto;
-      }
-
-      .admissions-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        position: relative;
       }
 
       .process-steps::before {
-        left: 50%;
-        transform: translateX(-50%);
+        content: "";
+        position: absolute;
+        left: 30px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, #c52233, #e05a68);
       }
-    }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      .process-step {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        background: #c52233;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        z-index: 2;
+      }
+
+      .step-content {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #c52233;
+      }
+
+      .step-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        gap: 15px;
+      }
+
+      .step-header h3 {
+        margin-bottom: 0;
+      }
+
+      .step-chevron {
+        color: #c52233;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+      }
+
+      .step-content.open .step-chevron {
+        transform: rotate(180deg);
+      }
+
+      .step-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      .step-content.open .step-body {
+        max-height: 600px;
+      }
+
+      .step-body-inner {
+        padding-top: 15px;
+      }
+
+      .step-content h3 {
+        color: #0f2d56;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+
+      .step-content p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .step-details {
+        list-style: none;
+        padding: 0;
+        margin: 15px 0;
+      }
+
+      .step-details li {
+        margin-bottom: 8px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      /* Show more button (Admissions Process) */
+      .process-show-more {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .process-show-more .btn {
+        background: white;
+        color: #c52233;
+        border: 2px solid #c52233;
+        padding: 12px 34px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .process-show-more .btn:hover {
+        background: #c52233;
+        color: white;
+      }
+
+      /* Admissions Container */
+      .admissions-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .requirements-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .requirements-box h3 {
+        color: #0f2d56;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .requirements-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .requirements-list li {
+        margin-bottom: 12px;
+        padding-left: 25px;
+        position: relative;
+      }
+
+      .requirements-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #c52233;
+        font-size: 1.2rem;
+      }
+
+      /* Tuition Tables */
+      .tuition-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
+      }
+
+      .tuition-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .tuition-header {
+        background: #c52233;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .tuition-header h3 {
+        margin-bottom: 5px;
+        font-size: 1.3rem;
+      }
+
+      .tuition-content {
+        padding: 25px;
+      }
+
+      .fee-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .fee-item:last-child {
+        border-bottom: none;
+      }
+
+      .fee-name {
+        color: #0f2d56;
+        font-weight: 500;
+      }
+
+      .fee-amount {
+        color: #c52233;
+        font-weight: 600;
+      }
+
+      /* Financial Aid */
+      .financial-aid {
+        background: #f0f9ff;
+        padding: 30px;
+        border-radius: 10px;
+        margin-top: 40px;
+        border-left: 4px solid #2c6bb8;
+      }
+
+      .financial-aid h3 {
+        color: #0f2d56;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .process-step {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .step-number {
+          margin: 0 auto;
+        }
+
+        .admissions-container {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .process-steps::before {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="menu-toggle" id="menu-toggle">☰</div>
       <div class="logo">
         <a href="index.html">
-          <img src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg" alt="Mongolian Itgel School Logo">
+          <img
+            src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg"
+            alt="Mongolian Itgel School Logo"
+          />
         </a>
-        <span class="school-name">Mongolian Itgel School</span>
+        <span class="school-name" data-i18n="siteName"
+          >Mongolian Itgel School</span
+        >
       </div>
-    <ul class="nav-links">
-      <li class="dropdown">
-        <a href="index.html">About Us</a>
-        <ul class="dropdown-menu">
-          <li><a href="index.html#vice-greeting">Vice's Greeting</a></li>
-          <li><a href="index.html#mission-vision">Mission & Vision</a></li>
-          <li><a href="index.html#our-success">Our Success</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="programs.html">Programs</a>
-        <ul class="dropdown-menu">
-          <li><a href="programs.html#academic-calendar">Academic Calendar</a></li>
-          <li><a href="programs.html#activities">Extracurricular Activities</a></li>
-          <li><a href="programs.html#special-programs">Special Programs</a></li>
-          <li><a href="programs.html#volunteer">Volunteer</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="admissions.html">Admissions</a>
-        <ul class="dropdown-menu">
-          <li><a href="#process">Process</a></li>
-          <li><a href="#online">Online Admissions</a></li>
-          <li><a href="#tuition">Tuition & Fees</a></li>
-        </ul>
-      </li>
-      <li><a href="information.html">Information</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-    </ul>
-  </nav>
+      <ul class="nav-links">
+        <li class="dropdown">
+          <a href="index.html" data-i18n="nav.about">About Us</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="index.html#vice-greeting" data-i18n="nav.viceGreeting"
+                >Vice's Greeting</a
+              >
+            </li>
+            <li>
+              <a href="index.html#mission-vision" data-i18n="nav.missionVision"
+                >Mission & Vision</a
+              >
+            </li>
+            <li>
+              <a href="index.html#our-success" data-i18n="nav.ourSuccess"
+                >Our Success</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="programs.html" data-i18n="nav.programs">Programs</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                href="programs.html#academic-calendar"
+                data-i18n="nav.academicCalendar"
+                >Academic Calendar</a
+              >
+            </li>
+            <li>
+              <a href="programs.html#activities" data-i18n="nav.activities"
+                >Extracurricular Activities</a
+              >
+            </li>
+            <li>
+              <a
+                href="programs.html#special-programs"
+                data-i18n="nav.specialPrograms"
+                >Special Programs</a
+              >
+            </li>
+            <li>
+              <a href="programs.html#volunteer" data-i18n="nav.volunteer"
+                >Volunteer</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="admissions.html" data-i18n="nav.admissions">Admissions</a>
+          <ul class="dropdown-menu">
+            <li><a href="#process" data-i18n="nav.process">Process</a></li>
+            <li>
+              <a href="#online" data-i18n="nav.onlineAdmissions"
+                >Online Admissions</a
+              >
+            </li>
+            <li>
+              <a href="#tuition" data-i18n="nav.tuition">Tuition & Fees</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="information.html" data-i18n="nav.information">Information</a>
+        </li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+        <button id="lang-toggle" class="lang-switch mn">
+          <span class="lang-slider"></span>
+          <span class="lang-option" data-lang="mn">MN</span>
+          <span class="lang-option" data-lang="en">EN</span>
+        </button>
+      </ul>
+    </nav>
 
-  <!-- Page Header  -->
-  <section class="page-header"></section>
+    <!-- Page Header  -->
+    <section class="page-header"></section>
 
-  <!-- Breadcrumb Navigation -->
-  <nav class="breadcrumb">
-    <div class="container breadcrumb-content">
-      <div class="breadcrumb-links">
-        <a href="index.html">Home</a>
-        <span>›</span>
-        <span>Admissions</span>
+    <!-- Admissions Process -->
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="process-title"></h2>
+          <p id="process-subtitle"></p>
+        </div>
+
+        <div class="process-steps" id="process-steps"></div>
       </div>
-    </div>
-  </nav>
+    </section>
 
-  <!-- Admissions Process -->
-  <section id="process" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="process-title"></h2>
-      <p id="process-subtitle"></p>
-    </div>
+    <!-- Online Admissions -->
+    <section id="online" class="section" style="background: #f0f2f5">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="online-title"></h2>
+          <p id="online-subtitle"></p>
+        </div>
 
-    <div class="process-steps" id="process-steps"></div>
-  </div>
-</section>
+        <div class="admissions-container">
+          <!-- LEFT -->
+          <div>
+            <h2
+              id="online-left-title"
+              style="color: #0f2d56; margin-bottom: 20px"
+            ></h2>
 
-  <!-- Online Admissions -->
-<section id="online" class="section" style="background: #f0f2f5;">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="online-title"></h2>
-      <p id="online-subtitle"></p>
-    </div>
+            <p
+              id="online-left-text"
+              style="margin-bottom: 20px; line-height: 1.8"
+            ></p>
 
-    <div class="admissions-container">
-      <!-- LEFT -->
-      <div>
-        <h2 id="online-left-title" style="color:#0f2d56; margin-bottom:20px;"></h2>
+            <div class="requirements-box">
+              <h3>
+                <i class="fas fa-file-alt"></i>
+                <span id="online-req-title"></span>
+              </h3>
 
-        <p id="online-left-text" style="margin-bottom:20px; line-height:1.8;"></p>
+              <ul id="online-req-list" class="requirements-list"></ul>
+            </div>
+          </div>
 
-        <div class="requirements-box">
+          <!-- RIGHT CARD -->
+          <div
+            style="
+              background: white;
+              padding: 30px;
+              border-radius: 10px;
+              text-align: center;
+              box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            "
+          >
+            <h3
+              id="online-card-title"
+              style="color: #0f2d56; margin-bottom: 20px"
+            ></h3>
+
+            <p id="online-card-text" style="margin-bottom: 30px"></p>
+
+            <a
+              id="online-btn"
+              class="btn"
+              target="_blank"
+              style="display: block; margin-bottom: 20px"
+            ></a>
+
+            <p id="online-help" style="color: #666; font-size: 0.9rem"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tuition & Fees -->
+    <section id="tuition" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="tuition-title"></h2>
+          <p id="tuition-subtitle"></p>
+        </div>
+
+        <div id="tuition-grid" class="tuition-grid"></div>
+
+        <div class="financial-aid">
           <h3>
-            <i class="fas fa-file-alt"></i>
-            <span id="online-req-title"></span>
+            <i class="fas fa-graduation-cap"></i>
+            <span data-i18n="admissions.financialAidTitle">Financial Aid</span>
           </h3>
+          <p
+            style="margin-bottom: 15px; line-height: 1.6"
+            data-i18n="admissions.financialAidText"
+          >
+            We offer merit-based scholarships and need-based financial aid to
+            qualified students. Scholarship applications must be submitted by
+            March 31st.
+          </p>
+          <a
+            href="contact.html"
+            class="btn"
+            data-i18n="admissions.financialAidBtn"
+            >Contact for Financial Aid</a
+          >
+        </div>
+      </div>
+    </section>
 
-          <ul id="online-req-list" class="requirements-list"></ul>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3 data-i18n="footer.quickLinks">Quick Links</h3>
+          <ul>
+            <li><a href="index.html" data-i18n="footer.home">Home</a></li>
+            <li>
+              <a href="programs.html" data-i18n="nav.programs">Programs</a>
+            </li>
+            <li>
+              <a href="admissions.html" data-i18n="nav.admissions"
+                >Admissions</a
+              >
+            </li>
+            <li>
+              <a href="information.html" data-i18n="nav.information"
+                >Information</a
+              >
+            </li>
+            <li>
+              <a href="contact.html" data-i18n="footer.contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.contactInfo">Contact Info</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            <span data-i18n="footer.address">BZ district, 13 khoroo</span>
+          </p>
+          <p><i class="fas fa-phone"></i> +976 123-4567</p>
+          <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
+        </div>
+
+        <div class="footer-section map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1393.855032839151!2d106.97400759680339!3d47.91412936212881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDU0JzUxLjQiTiAxMDbCsDU4JzI4LjAiRQ!5e0!3m2!1sen!2smn!4v1786679402783!5m2!1sen!2smn"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.connect">Connect With Us</h3>
+          <p data-i18n="footer.followUs">
+            Follow us on social media for updates
+          </p>
+          <div class="social-icons">
+            <a href="#" id="social-facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" id="social-instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" id="social-email"><i class="fas fa-envelope"></i></a>
+          </div>
         </div>
       </div>
 
-      <!-- RIGHT CARD -->
-      <div
-        style="
-          background:white;
-          padding:30px;
-          border-radius:10px;
-          text-align:center;
-          box-shadow:0 3px 15px rgba(0,0,0,0.1);
-        "
-      >
-        <h3 id="online-card-title" style="color:#0f2d56; margin-bottom:20px;"></h3>
-
-        <p id="online-card-text" style="margin-bottom:30px;"></p>
-
-        <a
-          id="online-btn"
-          class="btn"
-          target="_blank"
-          style="display:block; margin-bottom:20px;"
-        ></a>
-
-        <p id="online-help" style="color:#666; font-size:0.9rem;"></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- Tuition & Fees -->
-  <section id="tuition" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="tuition-title"></h2>
-      <p id="tuition-subtitle"></p>
-    </div>
-
-    <div id="tuition-grid" class="tuition-grid"></div>
-
-      <div class="financial-aid">
-        <h3><i class="fas fa-graduation-cap"></i> Financial Aid</h3>
-        <p style="margin-bottom: 15px; line-height: 1.6;">
-          We offer merit-based scholarships and need-based financial aid to qualified students. 
-          Scholarship applications must be submitted by March 31st.
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">
+          © 2025 Mongolian Itgel School. All rights reserved.
         </p>
-        <a href="contact.html" class="btn">Contact for Financial Aid</a>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="programs.html">Programs</a></li>
-          <li><a href="admissions.html">Admissions</a></li>
-          <li><a href="information.html">Information</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h3>Contact Info</h3>
-        <p><i class="fas fa-map-marker-alt"></i> BZ district, 13 khoroo </p>
-        <p><i class="fas fa-phone"></i> +976 123-4567</p>
-        <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
-      </div>
-
-      <div class="footer-section map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCc INCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"></iframe>
-      </div>
-
-      <div class="footer-section">
-        <h3>Connect With Us</h3>
-        <p>Follow us on social media for updates</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2025 Mongolian Itgel School. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="script/admissions.js"></script>
-</body>
+    <script src="script/admissions.js"></script>
+  </body>
 </html>

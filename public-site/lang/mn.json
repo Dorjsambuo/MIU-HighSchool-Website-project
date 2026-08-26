@@ -1,0 +1,69 @@
+{
+  "siteName": "Монголын Итгэл Сургууль",
+
+  "nav.about": "Бидний тухай",
+  "nav.viceGreeting": "Захиралын мэндчилгээ",
+  "nav.missionVision": "Эрхэм зорилго & Алсын хараа",
+  "nav.ourSuccess": "Бидний амжилт",
+  "nav.programs": "Хөтөлбөрүүд",
+  "nav.academicCalendar": "Хичээлийн жилийн хуанли",
+  "nav.activities": "Дугуйлан, секц",
+  "nav.specialPrograms": "Тусгай хөтөлбөрүүд",
+  "nav.volunteer": "Сайн дурын ажил",
+  "nav.admissions": "Элсэлт",
+  "nav.process": "Бүртгэлийн журам",
+  "nav.onlineAdmissions": "Онлайн элсэлт",
+  "nav.tuition": "Сургалтын төлбөр",
+  "nav.information": "Мэдээлэл",
+  "nav.contact": "Холбоо барих",
+
+  "viceGreeting.title": "Захиралын мэндчилгээ",
+
+  "missionVision.title": "Эрхэм зорилго & Алсын хараа",
+  "missionVision.missionHeading": "Бидний эрхэм зорилго",
+  "missionVision.visionHeading": "Бидний алсын хараа",
+
+  "ourSuccess.title": "Бидний амжилт",
+  "ourSuccess.graduatesHeading": "Төгсөгчдийн тоо",
+  "ourSuccess.awardsHeading": "Шагналт амжилт",
+  "ourSuccess.communityHeading": "Нийгэмд үзүүлэх нөлөө",
+
+  "programs.calendarTitle": "2026-2027 оны хичээлийн жилийн хуанли",
+  "programs.calendarSubtitle": "Хичээлийн жилийн чухал огноо, арга хэмжээнүүд.",
+
+  "calendar.mon": "Дав",
+  "calendar.tue": "Мяг",
+  "calendar.wed": "Лха",
+  "calendar.thu": "Пүр",
+  "calendar.fri": "Баа",
+  "calendar.sat": "Бям",
+  "calendar.sun": "Ням",
+
+  "admissions.financialAidTitle": "Тэтгэлэг, дэмжлэг",
+  "admissions.financialAidText": "Бид тэнцвэртэй сурлагатай болон санхүүгийн хэрэгцээтэй сурагчдад тэтгэлэг, санхүүгийн дэмжлэг үзүүлдэг. Тэтгэлгийн өргөдлийг 3-р сарын 31-ний өдрийг хүртэл хүлээн авна.",
+  "admissions.financialAidBtn": "Тэтгэлгийн талаар холбогдох",
+
+  "information.faqTitle": "Түгээмэл асуултууд",
+  "information.faqSubtitle": "Түгээмэл асуултуудын хариултыг олоорой",
+
+  "contact.title": "Холбоо барих мэдээлэл",
+  "contact.subtitle": "Бидэнтэй холбогдоорой",
+  "contact.addressHeading": "Хаяг",
+  "contact.phoneHeading": "Утас",
+  "contact.emailHeading": "Имэйл",
+  "contact.mainOffice": "Ерөнхий алба:",
+  "contact.admissionsLabel": "Элсэлт:",
+  "contact.generalLabel": "Ерөнхий:",
+  "contact.registrarLabel": "Бүртгэлийн алба:",
+  "contact.locationHeading": "Бидний байршил",
+  "contact.connectOnlineHeading": "Онлайнаар холбогдох",
+
+  "footer.quickLinks": "Хурдан холбоос",
+  "footer.home": "Нүүр хуудас",
+  "footer.contact": "Холбоо барих",
+  "footer.contactInfo": "Холбоо барих мэдээлэл",
+  "footer.address": "БЗ дүүрэг, 13-р хороо",
+  "footer.connect": "Биднтэй холбогдоорой",
+  "footer.followUs": "Шинэ мэдээллийг олж мэдэхийн тулд биднийг дагаарай",
+  "footer.copyright": "© 2025 Монголын Итгэл Сургууль. Бүх эрх хуулиар хамгаалагдсан."
+}

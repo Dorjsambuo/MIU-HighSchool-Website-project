@@ -1,346 +1,437 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programs - Mongolian International School</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    
-    /* Activities Styles */
-    .activities-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programs - Mongolian International School</title>
 
-    .activity-card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    }
+    <link rel="stylesheet" href="style.css" />
 
-    .activity-image {
-      height: 250px;
-      background-size: cover;
-      background-position: center;
-    }
+    <!-- Google Fonts & Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="script/i18n.js"></script>
 
-    .activity-content {
-      padding: 20px;
-    }
+    <style>
+      /* Activities Styles */
+      .activities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
 
-    .activity-content h3 {
-      color: #0f2d56;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
+      .activity-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      }
 
-    .activity-content p {
-      color: #666;
-      margin-bottom: 15px;
-      line-height: 1.6;
-    }
+      .activity-image {
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+      }
 
-    .activity-details {
-      display: flex;
-      justify-content: space-between;
-      color: #666;
-      font-size: 0.9rem;
-      padding-top: 15px;
-      border-top: 1px solid #eee;
-    }
+      .activity-content {
+        padding: 20px;
+      }
 
-    .activity-details i {
-      color: #c52233;
-      margin-right: 5px;
-    }
+      .activity-content h3 {
+        color: #0f2d56;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
 
-    /* Special Programs Styles */
-    .special-programs {
-      background: #000;
-      position: relative;
-      overflow: hidden;
-    }
+      .activity-content p {
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
 
-    .special-programs::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/ChatGPT_Image_Nov_8__2025__04_54_58_AM-removebg-preview.png?raw=true') no-repeat center left;
-      background-size: 25%;
-      opacity: 0.3;
-    }
-
-    .special-programs .section-header h2,
-    .special-programs .section-header p {
-      color: white;
-    }
-
-    .special-programs .section-header h2::after {
-      background: white;
-    }
-
-    .programs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .program-card {
-      background: rgba(255,255,255,0.9);
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .program-icon {
-      font-size: 40px;
-      color: #c52233;
-      margin-bottom: 15px;
-    }
-
-    /* Volunteer Programs */
-    .volunteer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-
-    .volunteer-card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    }
-
-    .volunteer-image {
-      height: 250px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .volunteer-content {
-      padding: 20px;
-    }
-
-    .volunteer-content h3 {
-      color: #0f2d56;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-
-    .volunteer-content p {
-      color: #666;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 768px) {
-      .days-grid .day {
-        height: 55px;
+      .activity-details {
+        display: flex;
+        justify-content: space-between;
+        color: #666;
         font-size: 0.9rem;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
       }
-      
-      .calendar-nav {
-        flex-direction: column;
-        gap: 15px;
+
+      .activity-details i {
+        color: #c52233;
+        margin-right: 5px;
       }
-      
-      .calendar-nav h3 {
-        min-width: auto;
+
+      /* Special Programs Styles */
+      .special-programs {
+        background: #0f2d56;
+        position: relative;
+        overflow: hidden;
       }
-    }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      .special-programs::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("https://raw.githubusercontent.com/tdntrolh1tizt/mgl-highschool-site/main/backend/uploads/ChatGPT_Image_Nov_28%2C_2024_04_14_18_PM-removebg-preview.png")
+          no-repeat center left;
+        background-size: 25%;
+        opacity: 0.3;
+      }
+
+      .special-programs .section-header h2,
+      .special-programs .section-header p {
+        color: white;
+      }
+
+      .special-programs .section-header h2::after {
+        background: white;
+      }
+
+      .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .program-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .program-icon {
+        font-size: 40px;
+        color: #c52233;
+        margin-bottom: 15px;
+      }
+
+      /* Volunteer Programs Styles */
+      .volunteer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .volunteer-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .volunteer-image {
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .volunteer-content {
+        padding: 20px;
+      }
+
+      .volunteer-content h3 {
+        color: #0f2d56;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+
+      .volunteer-content p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .days-grid .day {
+          height: 45px;
+          font-size: 0.9rem;
+        }
+        .calendar-nav {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .calendar-nav h3 {
+          min-width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="menu-toggle" id="menu-toggle">☰</div>
       <div class="logo">
         <a href="index.html">
-          <img src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg" alt="Mongolian Itgel School Logo">
+          <img
+            src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg"
+            alt="Mongolian Itgel School Logo"
+          />
         </a>
-        <span class="school-name">Mongolian Itgel School</span>
+        <span class="school-name" data-i18n="siteName"
+          >Mongolian Itgel School</span
+        >
       </div>
-    <ul class="nav-links">
-      <li class="dropdown">
-        <a href="index.html">About Us</a>
-        <ul class="dropdown-menu">
-          <li><a href="index.html#vice-greeting">Vice's Greeting</a></li>
-          <li><a href="index.html#mission-vision">Mission & Vision</a></li>
-          <li><a href="index.html#our-success">Our Success</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="programs.html">Programs</a>
-        <ul class="dropdown-menu">
-          <li><a href="#academic-calendar">Academic Calendar</a></li>
-          <li><a href="#activities">Extracurricular Activities</a></li>
-          <li><a href="#special-programs">Special Programs</a></li>
-          <li><a href="#volunteer">Volunteer</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="admissions.html">Admissions</a>
-        <ul class="dropdown-menu">
-          <li><a href="admissions.html#process">Process</a></li>
-          <li><a href="admissions.html#online">Online Admissions</a></li>
-          <li><a href="admissions.html#tuition">Tuition & Fees</a></li>
-        </ul>
-      </li>
-      <li><a href="information.html">Information</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-    </ul>
-  </nav>
+      <ul class="nav-links">
+        <li class="dropdown">
+          <a href="index.html" data-i18n="nav.about">About Us</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="index.html#vice-greeting" data-i18n="nav.viceGreeting"
+                >Vice's Greeting</a
+              >
+            </li>
+            <li>
+              <a href="index.html#mission-vision" data-i18n="nav.missionVision"
+                >Mission & Vision</a
+              >
+            </li>
+            <li>
+              <a href="index.html#our-success" data-i18n="nav.ourSuccess"
+                >Our Success</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="programs.html" data-i18n="nav.programs">Programs</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#academic-calendar" data-i18n="nav.academicCalendar"
+                >Academic Calendar</a
+              >
+            </li>
+            <li>
+              <a href="#activities" data-i18n="nav.activities"
+                >Extracurricular Activities</a
+              >
+            </li>
+            <li>
+              <a href="#special-programs" data-i18n="nav.specialPrograms"
+                >Special Programs</a
+              >
+            </li>
+            <li>
+              <a href="#volunteer" data-i18n="nav.volunteer">Volunteer</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="admissions.html" data-i18n="nav.admissions">Admissions</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="admissions.html#process" data-i18n="nav.process"
+                >Process</a
+              >
+            </li>
+            <li>
+              <a href="admissions.html#online" data-i18n="nav.onlineAdmissions"
+                >Online Admissions</a
+              >
+            </li>
+            <li>
+              <a href="admissions.html#tuition" data-i18n="nav.tuition"
+                >Tuition & Fees</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="information.html" data-i18n="nav.information">Information</a>
+        </li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+        <button id="lang-toggle" class="lang-switch mn">
+          <span class="lang-slider"></span>
+          <span class="lang-option" data-lang="mn">MN</span>
+          <span class="lang-option" data-lang="en">EN</span>
+        </button>
+      </ul>
+    </nav>
 
-  <!-- Page Header -->
-  <section class="page-header"></section>
+    <!-- Page Header -->
+    <section class="page-header"></section>
 
-  <!-- Breadcrumb Navigation -->
-  <nav class="breadcrumb">
-    <div class="container breadcrumb-content">
-      <div class="breadcrumb-links">
-        <a href="index.html">Home</a>
-        <span>›</span>
-        <span>Programs</span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Academic Calendar -->
-  <section id="academic-calendar" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Academic Calendar 2025-2026</h2>
-        <p>Important dates and events for the academic year</p>
-      </div>
-
-      <div class="calendar-container">
-        <div class="calendar-nav">
-          <button id="prev-month">&lt;</button>
-          <h3 id="current-month">September 2025</h3>
-          <button id="next-month">&gt;</button>
+    <!-- Academic Calendar -->
+    <section id="academic-calendar" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="programs.calendarTitle">
+            Academic Calendar 2026-2027
+          </h2>
+          <p data-i18n="programs.calendarSubtitle">
+            Important dates and events for the academic year.
+          </p>
         </div>
+        <div class="calendar-container">
+          <div class="calendar-nav">
+            <button id="prev-month">&lt;</button>
+            <h3 id="current-month">September 2026</h3>
+            <button id="next-month">&gt;</button>
+          </div>
+          <div class="weekdays">
+            <div data-i18n="calendar.mon">Mon</div>
+            <div data-i18n="calendar.tue">Tue</div>
+            <div data-i18n="calendar.wed">Wed</div>
+            <div data-i18n="calendar.thu">Thu</div>
+            <div data-i18n="calendar.fri">Fri</div>
+            <div data-i18n="calendar.sat">Sat</div>
+            <div data-i18n="calendar.sun">Sun</div>
+          </div>
+          <div class="days-grid" id="calendar-days">
+            <!-- Calendar JavaScript render хийнэ -->
+          </div>
 
-        <div class="weekdays">
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
-          <div>Sun</div>
-        </div>
-
-        <div class="days-grid" id="calendar-days">
-          <!-- Calendar-JavaScript -->
-        </div>
-      </div>
-
-      <!-- Calendar Explanation -->
-      <div class="calendar-explanation">
-        <h3 class="explanation-title">
-          <i class="fas fa-calendar-alt"></i>
-          <span id="month-explanation-title">September Important Dates</span>
-        </h3>
-        <ul class="explanation-list" id="explanation-list">
-          <!-- Explanation-JavaScript -->
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Extracurricular Activities -->
-  <section id="activities" class="section" style="background: #f0f2f5;">
-    <div class="container">
-      <div class="section-header">
-        <h2 id="activities-title"></h2>
-        <p id="activities-subtitle"></p>
-      </div>
-
-      
-      <div class="activities-grid" id="activities-grid">
-      </div>
-    </div>
-  </section>
-
-  <!-- Special Programs -->
-  <section id="special-programs" class="special-programs section">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="special-programs-title"></h2>
-      <p id="special-programs-subtitle"></p>
-    </div>
-
-    <div class="programs-grid" id="special-programs-grid"></div>
-  </div>
-</section>
-
-  <!-- Volunteer Programs -->
-  <section id="volunteer" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="volunteer-title"></h2>
-      <p id="volunteer-subtitle"></p>
-    </div>
-
-    <div class="volunteer-grid" id="volunteer-grid"></div>
-  </div>
-</section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="programs.html">Programs</a></li>
-          <li><a href="admissions.html">Admissions</a></li>
-          <li><a href="information.html">Information</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h3>Contact Info</h3>
-        <p><i class="fas fa-map-marker-alt"></i> BZ district 13khoroo</p>
-        <p><i class="fas fa-phone"></i> +976 123-4567</p>
-        <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
-      </div>
-
-      <div class="footer-section map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCc INCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"></iframe>
-      </div>
-
-      <div class="footer-section">
-        <h3>Connect With Us</h3>
-        <p>Follow us on social media for updates</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fas fa-envelope"></i></a>
+          <!-- Calendar Explanation -->
+          <div class="calendar-explanation">
+            <h3 class="explanation-title">
+              <i class="fas fa-calendar-alt"></i>
+              <span id="month-explanation-title"
+                >September Important Dates</span
+              >
+            </h3>
+            <ul class="explanation-list" id="explanation-list">
+              <!-- Calendar JavaScript render хийнэ -->
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="footer-bottom">
-      <p>© 2025 Mongolian Itgel School. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Extracurricular Activities -->
+    <section id="activities" class="section" style="background: #f0f2f5">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="activities-title">Extracurricular Activities</h2>
+          <p id="activities-subtitle">
+            Discover our wide range of student clubs and activities.
+          </p>
+        </div>
+        <div class="activities-grid" id="activities-grid">
+          <!-- JavaScript data уншиж оруулна -->
+        </div>
+      </div>
+    </section>
 
-  <script src="script/programs.js"></script>
+    <!-- Special Programs -->
+    <section id="special-programs" class="special-programs section">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="special-programs-title">Special Programs</h2>
+          <p id="special-programs-subtitle">
+            Unique learning opportunities for student development.
+          </p>
+        </div>
+        <div class="programs-grid" id="special-programs-grid">
+          <!-- JavaScript data уншиж оруулна -->
+        </div>
+      </div>
+    </section>
 
-</body>
+    <!-- Volunteer Programs -->
+    <section id="volunteer" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="volunteer-title">Volunteer Programs</h2>
+          <p id="volunteer-subtitle">
+            Engage with community service and social impact projects.
+          </p>
+        </div>
+        <div class="volunteer-grid" id="volunteer-grid">
+          <!-- JavaScript data уншиж оруулна -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3 data-i18n="footer.quickLinks">Quick Links</h3>
+          <ul>
+            <li><a href="index.html" data-i18n="footer.home">Home</a></li>
+            <li>
+              <a href="programs.html" data-i18n="nav.programs">Programs</a>
+            </li>
+            <li>
+              <a href="admissions.html" data-i18n="nav.admissions"
+                >Admissions</a
+              >
+            </li>
+            <li>
+              <a href="information.html" data-i18n="nav.information"
+                >Information</a
+              >
+            </li>
+            <li>
+              <a href="contact.html" data-i18n="footer.contact">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.contactInfo">Contact Info</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            <span data-i18n="footer.address"
+              >Bayanzurkh District, 13th Khoroo</span
+            >
+          </p>
+          <p><i class="fas fa-phone"></i> +976 1234-5678</p>
+          <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
+        </div>
+
+        <div class="footer-section map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1393.855032839151!2d106.97400759680339!3d47.91412936212881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDU0JzUxLjQiTiAxMDbCsDU4JzI4LjAiRQ!5e0!3m2!1sen!2smn!4v1786679402783!5m2!1sen!2smn"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.connect">Connect With Us</h3>
+          <p data-i18n="footer.followUs">
+            Follow us on social media for updates.
+          </p>
+          <div class="social-icons">
+            <a href="#" id="social-facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" id="social-instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" id="social-email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">
+          &copy; 2025 Mongolian Itgel School. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Script файлыг script/ хавтаснаас уншихаар тохируулсан -->
+    <script src="script/programs.js"></script>
+  </body>
 </html>

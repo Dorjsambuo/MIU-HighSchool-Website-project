@@ -1,0 +1,69 @@
+{
+  "siteName": "Mongolian Itgel School",
+
+  "nav.about": "About Us",
+  "nav.viceGreeting": "Vice's Greeting",
+  "nav.missionVision": "Mission & Vision",
+  "nav.ourSuccess": "Our Success",
+  "nav.programs": "Programs",
+  "nav.academicCalendar": "Academic Calendar",
+  "nav.activities": "Extracurricular Activities",
+  "nav.specialPrograms": "Special Programs",
+  "nav.volunteer": "Volunteer",
+  "nav.admissions": "Admissions",
+  "nav.process": "Process",
+  "nav.onlineAdmissions": "Online Admissions",
+  "nav.tuition": "Tuition & Fees",
+  "nav.information": "Information",
+  "nav.contact": "Contact Us",
+
+  "viceGreeting.title": "Vice's Greeting",
+
+  "missionVision.title": "Mission & Vision",
+  "missionVision.missionHeading": "Our Mission",
+  "missionVision.visionHeading": "Our Vision",
+
+  "ourSuccess.title": "Our Success",
+  "ourSuccess.graduatesHeading": "Graduation Student numbers",
+  "ourSuccess.awardsHeading": "Award Winning",
+  "ourSuccess.communityHeading": "Community Impact",
+
+  "programs.calendarTitle": "Academic Calendar 2026-2027",
+  "programs.calendarSubtitle": "Important dates and events for the academic year.",
+
+  "calendar.mon": "Mon",
+  "calendar.tue": "Tue",
+  "calendar.wed": "Wed",
+  "calendar.thu": "Thu",
+  "calendar.fri": "Fri",
+  "calendar.sat": "Sat",
+  "calendar.sun": "Sun",
+
+  "admissions.financialAidTitle": "Financial Aid",
+  "admissions.financialAidText": "We offer merit-based scholarships and need-based financial aid to qualified students. Scholarship applications must be submitted by March 31st.",
+  "admissions.financialAidBtn": "Contact for Financial Aid",
+
+  "information.faqTitle": "Frequently Asked Questions",
+  "information.faqSubtitle": "Find answers to common questions",
+
+  "contact.title": "Contact Information",
+  "contact.subtitle": "Get in touch with us",
+  "contact.addressHeading": "Address",
+  "contact.phoneHeading": "Phone",
+  "contact.emailHeading": "Email",
+  "contact.mainOffice": "Main Office:",
+  "contact.admissionsLabel": "Admissions:",
+  "contact.generalLabel": "General:",
+  "contact.registrarLabel": "Registrar:",
+  "contact.locationHeading": "Our Location",
+  "contact.connectOnlineHeading": "Connect With Us Online",
+
+  "footer.quickLinks": "Quick Links",
+  "footer.home": "Home",
+  "footer.contact": "Contact Us",
+  "footer.contactInfo": "Contact Info",
+  "footer.address": "BZ District, 13khoroo",
+  "footer.connect": "Connect With Us",
+  "footer.followUs": "Follow us on social media for updates",
+  "footer.copyright": "© 2025 Mongolian Itgel School. All rights reserved."
+}

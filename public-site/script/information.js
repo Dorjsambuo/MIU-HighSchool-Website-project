@@ -57,7 +57,7 @@ async function loadNews() {
       : {
           sectionTitle: raw.sectionTitle || raw.title || "News",
           sectionSubtitle: raw.sectionSubtitle || raw.subtitle || "",
-          items: Array.isArray(raw.items) ? raw.items : []
+          items: Array.isArray(raw.items) ? raw.items : [],
         };
 
     if (titleEl) titleEl.textContent = data.sectionTitle || "";
@@ -109,12 +109,13 @@ async function loadFaq() {
       ? {
           sectionTitle: "Frequently Asked Questions",
           sectionSubtitle: "Find answers to common questions",
-          items: raw
+          items: raw,
         }
       : {
           sectionTitle: raw.sectionTitle || "Frequently Asked Questions",
-          sectionSubtitle: raw.sectionSubtitle || "Find answers to common questions",
-          items: Array.isArray(raw.items) ? raw.items : []
+          sectionSubtitle:
+            raw.sectionSubtitle || "Find answers to common questions",
+          items: Array.isArray(raw.items) ? raw.items : [],
         };
 
     if (titleEl) titleEl.textContent = data.sectionTitle;
@@ -137,7 +138,7 @@ async function loadFaq() {
             <p>${escapeHtml(x.answer)}</p>
           </div>
         </div>
-      `
+      `,
       )
       .join("");
   } catch (e) {
@@ -163,7 +164,9 @@ document.addEventListener("click", (e) => {
     const card = btn.closest(".news-card");
     if (!card) return;
     card.classList.toggle("expanded");
-    btn.textContent = card.classList.contains("expanded") ? "Show Less" : "Learn More";
+    btn.textContent = card.classList.contains("expanded")
+      ? "Show Less"
+      : "Learn More";
   }
 });
 

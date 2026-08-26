@@ -13,8 +13,8 @@ export default function Vice() {
 
   useEffect(() => {
     fetch(`${API}/api/vice`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setImage(data.imageUrl || "");
         setTitle(data.title || "");
         setP1(data.p1 || "");
@@ -31,7 +31,7 @@ export default function Vice() {
 
     const res = await fetch(`${API}/api/upload`, {
       method: "POST",
-      body: form
+      body: form,
     });
 
     const data = await res.json();
@@ -49,8 +49,8 @@ export default function Vice() {
         title,
         p1,
         p2,
-        signatureHtml
-      })
+        signatureHtml,
+      }),
     });
 
     alert("Vice greeting saved");
@@ -62,14 +62,14 @@ export default function Vice() {
 
       {image && <img src={image} style={{ maxWidth: "400px" }} />}
 
-      <input type="file" onChange={e => setFile(e.target.files[0])} />
+      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
 
-      <input value={title} onChange={e => setTitle(e.target.value)} />
-      <textarea value={p1} onChange={e => setP1(e.target.value)} />
-      <textarea value={p2} onChange={e => setP2(e.target.value)} />
+      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      <textarea value={p1} onChange={(e) => setP1(e.target.value)} />
+      <textarea value={p2} onChange={(e) => setP2(e.target.value)} />
       <textarea
         value={signatureHtml}
-        onChange={e => setSignatureHtml(e.target.value)}
+        onChange={(e) => setSignatureHtml(e.target.value)}
         placeholder="Use <br/> for line breaks"
       />
 
@@ -77,4 +77,3 @@ export default function Vice() {
     </div>
   );
 }
-

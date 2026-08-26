@@ -1,270 +1,569 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mongolian International School</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    .feature-card {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    }
+    <title>Mongolian International School</title>
 
-    .feature-icon {
-      font-size: 36px;
-      color: #c52233;
-      margin-bottom: 15px;
-    }
+    <link rel="stylesheet" href="style.css" />
 
-    .cafeteria-section {
-      margin-top: 60px;
-    }
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    .cafeteria-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="script/i18n.js"></script>
 
-    .cafeteria-image img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
+    <style>
+      /* ================================
+       FEATURES
+    ================================= */
 
-    @media (max-width: 768px) {
-      .cafeteria-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
       }
-    }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      .feature-card {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 36px;
+        color: #c52233;
+        margin-bottom: 15px;
+      }
+
+      /* ================================
+       CAFETERIA
+    ================================= */
+
+      .cafeteria-section {
+        margin-top: 60px;
+      }
+
+      .cafeteria-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .cafeteria-image img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* ================================
+       RESPONSIVE
+    ================================= */
+
+      @media (max-width: 768px) {
+        .cafeteria-content {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================
+       NAVIGATION
+  ========================================== -->
+
+    <nav class="navbar">
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
       <div class="logo">
         <a href="index.html">
-          <img src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg" alt="Mongolian Itgel School Logo">
+          <img
+            src="https://raw.githubusercontent.com/ventroliquizt/miu-highschool-site/main/backend/uploads/mis_logo_001-copy-2.jpg"
+            alt="Mongolian Itgel School Logo"
+          />
         </a>
-        <span class="school-name">Mongolian Itgel School</span>
-      </div>
-    <ul class="nav-links">
-      <li class="dropdown">
-        <a href="index.html">About Us</a>
-        <ul class="dropdown-menu">
-          <li><a href="#vice-greeting">Vice's Greeting</a></li>
-          <li><a href="#mission-vision">Mission & Vision</a></li>
-          <li><a href="#our-success">Our Success</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="programs.html">Programs</a>
-        <ul class="dropdown-menu">
-          <li><a href="programs.html#academic-calendar">Academic Calendar</a></li>
-          <li><a href="programs.html#activities">Extracurricular Activities</a></li>
-          <li><a href="programs.html#special-programs">Special Programs</a></li>
-          <li><a href="programs.html#volunteer">Volunteer</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="admissions.html">Admissions</a>
-        <ul class="dropdown-menu">
-          <li><a href="admissions.html#process">Process</a></li>
-          <li><a href="admissions.html#online">Online Admissions</a></li>
-          <li><a href="admissions.html#tuition">Tuition & Fees</a></li>
-        </ul>
-      </li>
-      <li><a href="information.html">Information</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-    </ul>
-  </nav>
 
-  <!-- Page Header -->
-  <section class="page-header"></section>
-
-  <!-- Breadcrumb Navigation -->
-  <nav class="breadcrumb">
-    <div class="container breadcrumb-content">
-      <div class="breadcrumb-links">
-        <a href="index.html">Home</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Vice's Greeting -->
- <!-- Vice's Greeting -->
-<section id="vice-greeting" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Vice's Greeting</h2>
-    </div>
-
-    <div style="display:grid; grid-template-columns:420px 1fr; gap:40px; align-items:center;">
-      <div style="background:#f0f2f5; border-radius:10px; padding:20px; display:flex; justify-content:center; align-items:center;">
-        <img id="vice-img" src="" alt="Vice Principal" />
+        <span class="school-name" data-i18n="siteName">
+          Mongolian Itgel School
+        </span>
       </div>
 
-      <div>
-        <h3 id="vice-title"></h3>
-        <p id="vice-p1"></p>
-        <p id="vice-p2"></p>
-        <p id="vice-sign"></p>
+      <ul class="nav-links">
+        <!-- ABOUT US -->
 
-      </div>
-    </div>
-  </div>
-</section>
+        <li class="dropdown">
+          <a href="index.html" data-i18n="nav.about"> About Us </a>
 
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#vice-greeting" data-i18n="nav.viceGreeting">
+                Vice's Greeting
+              </a>
+            </li>
 
-  <!-- Mission & Vision -->
-  <section id="mission-vision" class="section" style="background: #f0f2f5;">
-  <div class="container">
-    <div class="section-header">
-      <h2>Mission & Vision</h2>
-    </div>
+            <li>
+              <a href="#mission-vision" data-i18n="nav.missionVision">
+                Mission & Vision
+              </a>
+            </li>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
-      <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
-        <h3 style="color: #c52233; margin-bottom: 20px;">
-          Our Mission
-        </h3>
-        <p id="mission-text" style="line-height: 1.6; margin-bottom: 15px;"></p>
-      </div>
+            <li>
+              <a href="#our-success" data-i18n="nav.ourSuccess">
+                Our Success
+              </a>
+            </li>
+          </ul>
+        </li>
 
-      <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
-        <h3 style="color: #c52233; margin-bottom: 20px;">
-          Our Vision
-        </h3>
-        <p id="vision-text" style="line-height: 1.6; margin-bottom: 15px;"></p>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- PROGRAMS -->
 
-  <!-- Our Success -->
-  <section id="our-success" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Our Success</h2>
-      <p id="success-subtitle"></p>
-    </div>
+        <li class="dropdown">
+          <a href="programs.html" data-i18n="nav.programs"> Programs </a>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-graduation-cap"></i>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                href="programs.html#academic-calendar"
+                data-i18n="nav.academicCalendar"
+              >
+                Academic Calendar
+              </a>
+            </li>
+
+            <li>
+              <a href="programs.html#activities" data-i18n="nav.activities">
+                Extracurricular Activities
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="programs.html#special-programs"
+                data-i18n="nav.specialPrograms"
+              >
+                Special Programs
+              </a>
+            </li>
+
+            <li>
+              <a href="programs.html#volunteer" data-i18n="nav.volunteer">
+                Volunteer
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- ADMISSIONS -->
+
+        <li class="dropdown">
+          <a href="admissions.html" data-i18n="nav.admissions"> Admissions </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a href="admissions.html#process" data-i18n="nav.process">
+                Process
+              </a>
+            </li>
+
+            <li>
+              <a href="admissions.html#online" data-i18n="nav.onlineAdmissions">
+                Online Admissions
+              </a>
+            </li>
+
+            <li>
+              <a href="admissions.html#tuition" data-i18n="nav.tuition">
+                Tuition & Fees
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- INFORMATION -->
+
+        <li>
+          <a href="information.html" data-i18n="nav.information">
+            Information
+          </a>
+        </li>
+
+        <!-- CONTACT -->
+
+        <li>
+          <a href="contact.html" data-i18n="nav.contact"> Contact Us </a>
+        </li>
+        <button id="lang-toggle" class="lang-switch mn">
+          <span class="lang-slider"></span>
+          <span class="lang-option" data-lang="mn">MN</span>
+          <span class="lang-option" data-lang="en">EN</span>
+        </button>
+      </ul>
+    </nav>
+
+    <!-- =========================================
+       PAGE HEADER
+  ========================================== -->
+
+    <section class="page-header"></section>
+
+    <!-- =========================================
+       VICE'S GREETING
+  ========================================== -->
+
+    <section id="vice-greeting" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="viceGreeting.title">Vice's Greeting</h2>
         </div>
-        <h3>Graduation Student numbers</h3>
-        <p id="success-graduates"></p>
-      </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-award"></i>
-        </div>
-        <h3>Award Winning</h3>
-        <p id="success-awards"></p>
-      </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 40px;
+            align-items: center;
+          "
+        >
+          <div
+            style="
+              background: #f0f2f5;
+              border-radius: 10px;
+              padding: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <img id="vice-img" src="" alt="Vice Principal" />
+          </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <h3>Community Impact</h3>
-        <p id="success-community"></p>
-      </div>
-    </div>
-  </div>
-</section>
+          <div>
+            <h3 id="vice-title"></h3>
 
+            <p id="vice-p1"></p>
 
+            <p id="vice-p2"></p>
 
-  <!-- Cafeteria Section -->
-  <section id="cafeteria" class="section cafeteria-section" style="background: #f0f2f5;">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="cafeteria-title"></h2>
-      <p id="cafeteria-subtitle"></p>
-    </div>
-
-    <div class="cafeteria-content">
-      <div>
-        <h3 id="cafeteria-heading" style="color: #0f2d56; margin-bottom: 20px;"></h3>
-        <p id="cafeteria-text" style="margin-bottom: 20px; line-height: 1.8;"></p>
-      </div>
-
-      <div class="cafeteria-image">
-        <!-- show an image if you want -->
-        <img id="cafeteria-img" alt="Cafeteria" style="display:none;" />
-
-        <!-- fallback placeholder -->
-        <div id="cafeteria-placeholder"
-             style="width: 100%; height: 300px; background: #e0e0e0; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-          <i style="font-size: 80px; color: #666;"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="programs.html">Programs</a></li>
-          <li><a href="admissions.html">Admissions</a></li>
-          <li><a href="information.html">Information</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h3>Contact Info</h3>
-        <p><i class="fas fa-map-marker-alt"></i> BZ District, 13khoroo</p>
-        <p><i class="fas fa-phone"></i> +976 123-4567</p>
-        <p><i class="fas fa-envelope"></i> info@mis.edu.mn</p>
-      </div>
-
-      <div class="footer-section map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d759.4571515231197!2d106.97408718928833!3d47.914037627214114!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9691afe751f82f%3A0xafb952d70e99d3f1!2z0J3QuNC50YHQu9GN0LvQuNC50L0g0JXRgNOp0L3RhdC40Lkg0JHQvtC70L7QstGB0YDQvtC70YvQvSDQrdCc INCQ0Jkg0K4g0YHRg9GA0LPRg9GD0LvRjA!5e0!3m2!1sen!2smn!4v1761722919457!5m2!1sen!2smn"></iframe>
-      </div>
-
-      <div class="footer-section">
-        <h3>Connect With Us</h3>
-        <p>Follow us on social media for updates</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fas fa-envelope"></i></a>
+            <p id="vice-sign"></p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="footer-bottom">
-      <p>© 2025 Mongolian Itgel School. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- =========================================
+       MISSION & VISION
+  ========================================== -->
 
-  <script src="script/index.js"></script>
-</body>
+    <section id="mission-vision" class="section" style="background: #f0f2f5">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="missionVision.title">Mission & Vision</h2>
+        </div>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+          "
+        >
+          <!-- MISSION -->
+
+          <div
+            style="
+              background: white;
+              padding: 30px;
+              border-radius: 10px;
+              box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            "
+          >
+            <h3
+              data-i18n="missionVision.missionHeading"
+              style="
+                color: #c52233;
+                margin-bottom: 20px;
+                font-size: 24px;
+                font-weight: 600;
+              "
+            >
+              Our Mission
+            </h3>
+
+            <p id="mission-text" style="line-height: 1.6; margin: 0"></p>
+          </div>
+
+          <!-- VISION -->
+
+          <div
+            style="
+              background: white;
+              padding: 30px;
+              border-radius: 10px;
+              box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            "
+          >
+            <h3
+              data-i18n="missionVision.visionHeading"
+              style="
+                color: #c52233;
+                margin-bottom: 20px;
+                font-size: 24px;
+                font-weight: 600;
+              "
+            >
+              Our Vision
+            </h3>
+
+            <p id="vision-text" style="line-height: 1.6; margin: 0"></p>
+          </div>
+        </div>
+
+        <!-- =====================================
+           ADDITIONAL SECTIONS FROM MONGODB
+
+           MongoDB дээр:
+           data.sections[]
+
+           дотор байгаа нэмэлт section-үүд
+           энд container болж гарна.
+      ====================================== -->
+
+        <div id="dynamic-sections" class="dynamic-sections"></div>
+      </div>
+    </section>
+
+    <!-- =========================================
+       OUR SUCCESS
+  ========================================== -->
+
+    <section id="our-success" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="ourSuccess.title">Our Success</h2>
+
+          <p id="success-subtitle"></p>
+        </div>
+
+        <div class="features-grid">
+          <!-- GRADUATES -->
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-graduation-cap"> </i>
+            </div>
+
+            <h3 data-i18n="ourSuccess.graduatesHeading">
+              Graduation Student numbers
+            </h3>
+
+            <p id="success-graduates"></p>
+          </div>
+
+          <!-- AWARDS -->
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-award"> </i>
+            </div>
+
+            <h3 data-i18n="ourSuccess.awardsHeading">Award Winning</h3>
+
+            <p id="success-awards"></p>
+          </div>
+
+          <!-- COMMUNITY -->
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-users"> </i>
+            </div>
+
+            <h3 data-i18n="ourSuccess.communityHeading">Community Impact</h3>
+
+            <p id="success-community"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+       CAFETERIA
+  ========================================== -->
+
+    <section
+      id="cafeteria"
+      class="section cafeteria-section"
+      style="background: #f0f2f5"
+    >
+      <div class="container">
+        <div class="section-header">
+          <h2 id="cafeteria-title"></h2>
+
+          <p id="cafeteria-subtitle"></p>
+        </div>
+
+        <div class="cafeteria-content">
+          <div>
+            <h3
+              id="cafeteria-heading"
+              style="color: #0f2d56; margin-bottom: 20px"
+            ></h3>
+
+            <p
+              id="cafeteria-text"
+              style="margin-bottom: 20px; line-height: 1.8"
+            ></p>
+          </div>
+
+          <div class="cafeteria-image">
+            <!-- IMAGE -->
+
+            <img id="cafeteria-img" alt="Cafeteria" style="display: none" />
+
+            <!-- FALLBACK -->
+
+            <div
+              id="cafeteria-placeholder"
+              style="
+                width: 100%;
+                height: 300px;
+                background: #e0e0e0;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i class="fas fa-utensils" style="font-size: 80px; color: #666">
+              </i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+       FOOTER
+  ========================================== -->
+
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- QUICK LINKS -->
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.quickLinks">Quick Links</h3>
+
+          <ul>
+            <li>
+              <a href="index.html" data-i18n="footer.home"> Home </a>
+            </li>
+
+            <li>
+              <a href="programs.html" data-i18n="nav.programs"> Programs </a>
+            </li>
+
+            <li>
+              <a href="admissions.html" data-i18n="nav.admissions">
+                Admissions
+              </a>
+            </li>
+
+            <li>
+              <a href="information.html" data-i18n="nav.information">
+                Information
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html" data-i18n="footer.contact"> Contact </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- CONTACT INFO -->
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.contactInfo">Contact Info</h3>
+
+          <p>
+            <i class="fas fa-map-marker-alt"> </i>
+            <span data-i18n="footer.address">BZ District, 13khoroo</span>
+          </p>
+
+          <p>
+            <i class="fas fa-phone"> </i>
+            +976 123-4567
+          </p>
+
+          <p>
+            <i class="fas fa-envelope"> </i>
+            info@mis.edu.mn
+          </p>
+        </div>
+
+        <!-- MAP -->
+
+        <div class="footer-section map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1393.855032839151!2d106.97400759680339!3d47.91412936212881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDU0JzUxLjQiTiAxMDbCsDU4JzI4LjAiRQ!5e0!3m2!1sen!2smn!4v1786679402783!5m2!1sen!2smn"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+
+        <div class="footer-section">
+          <h3 data-i18n="footer.connect">Connect With Us</h3>
+
+          <p data-i18n="footer.followUs">
+            Follow us on social media for updates
+          </p>
+
+          <div class="social-icons">
+            <a href="#">
+              <i class="fab fa-facebook-f"> </i>
+            </a>
+
+            <a href="#">
+              <i class="fab fa-instagram"> </i>
+            </a>
+
+            <a href="#">
+              <i class="fas fa-envelope"> </i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">
+          © 2025 Mongolian Itgel School. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+    <script src="script/index.js"></script>
+  </body>
 </html>
